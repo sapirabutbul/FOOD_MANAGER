@@ -1,0 +1,55 @@
+create table login (
+	id serial not null primary key,
+	hash varchar(1000) not null,
+	email varchar(250) not null unique
+)
+
+create table users (
+	id serial not null primary key,
+	name varchar(250) not null,
+	email varchar(250) not null unique references login(email),
+	joined date not null default CURRENT_DATE
+)
+select * from login
+select * from users
+user info- reference by email to users table,  user name, uploaded recipes, favorite recipes, xp points, joined date, chosen recipes, shopping list 
+
+create table users_info (
+	id serial not null primary key,
+	user_id integer not null unique references users(id),
+	uploaded_recipes_id varchar[],
+	favorite_recipes_id varchar[],
+	users_points serial
+)
+create table favorites (
+	id serial not null primary key,
+	user_id integer not null references users(id),
+	favorite_recipe_id varchar[],
+	 UNIQUE(user_id,favorite_recipe_id )
+)
+create table likes (
+	id serial not null primary key,
+	user_id integer not null references users(id),
+	liked_recipe_id varchar[],
+	 UNIQUE(user_id,liked_recipe_id )
+)
+select * from favorites
+select * from likes
+delete from likes
+select * from users_info
+delete from favorites
+drop table users_info
+create table recipes (
+	id serial not null primary key,
+	title varchar(300) not null,
+	ingredients text not null, 
+	description text not null,
+	uploader_id integer not null references users(id),
+	uploader_name varchar(100),
+	likes integer, 
+	upload_date date not null default CURRENT_DATE
+)
+select * from recipes
+drop table recipes
+
+select ingredients ->> 'amount' as amount from recipes 
