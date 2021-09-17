@@ -4,6 +4,8 @@ export const FETCH_RECIPE = "FETCH_RECIPE";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const FILTER_RECIPES = "FILTER_RECIPES";
 export const SORT_RECIPES = "SORT_RECIPES";
+export const FAVORITES_RECIPES = "FAVORITES_RECIPES";
+export const SHOPPING_LIST = "SHOPPING_LIST";
 
 export const uploadUser = (value) => {
   return {
@@ -38,7 +40,6 @@ export const sortingRecipes = (value) => {
   };
 };
 export const goToRecipe = (value) => (dispatch) => {
-  // console.log("value id", value.target.id);
   fetch("http://localhost:4000/gotorecipe", {
     method: "POST",
     headers: {
@@ -58,23 +59,33 @@ export const goToRecipe = (value) => (dispatch) => {
     });
 };
 
-// export const addToFavorites = (value) => (dispatch) => {
-//   console.log("value ", value);
-//   fetch("http://localhost:4000/addtofavorite", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       uploader_id: value,
-//     }),
-//   })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log("data", data);
-//       dispatch({ type: ADD_FAVORITE, payload: data });
-//     })
-//     .catch((e) => {
-//       console.log("error", e);
-//     });
-// };
+export const fetchFavoritesRecipes = (value) => (dispatch) => {
+  console.log("value ", value);
+  fetch("http://localhost:4000/favoritesrecipes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: value,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      let recipeArray = [];
+      data.map((element) => {
+        return recipeArray.push(element.favorite_recipe_id);
+      });
+      console.log("dataaaaaaaaaaaaaaaaaaa", recipeArray);
+      dispatch({ type: FAVORITES_RECIPES, payload: recipeArray });
+    })
+    .catch((e) => {
+      console.log("error", e);
+    });
+};
+export const makeShoppingList = (value) => {
+  return {
+    type: SHOPPING_LIST,
+    payload: value,
+  };
+};

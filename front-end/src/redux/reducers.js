@@ -4,6 +4,8 @@ import {
   FETCH_RECIPE,
   FILTER_RECIPES,
   SORT_RECIPES,
+  FAVORITES_RECIPES,
+  SHOPPING_LIST,
 } from "./actions";
 import { combineReducers } from "redux";
 
@@ -34,6 +36,8 @@ const recipesInitState = {
   recipes: [],
   oneRecipe: [],
   filterRecipes: null,
+  favoritesRecipes_id: [],
+  shoppingList_id: null,
 };
 export const recipesReducer = (state = recipesInitState, action = {}) => {
   switch (action.type) {
@@ -115,7 +119,10 @@ export const recipesReducer = (state = recipesInitState, action = {}) => {
           };
         }
       }
-
+    case FAVORITES_RECIPES:
+      return { ...state, favoritesRecipes_id: action.payload };
+    case SHOPPING_LIST:
+      return { ...state, shoppingList_id: action.payload };
     default:
       return { ...state };
   }

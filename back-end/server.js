@@ -43,7 +43,13 @@ app.post("/gotorecipe", (req, res) => {
     res.send(data);
   });
 });
-
+app.post("/favoritesrecipes", (req, res) => {
+  console.log("reqqqqqqq", req.body);
+  recipes.favoritesRecipes(req, res).then((data) => {
+    console.log("dataaaaaaaaaaaaa", data);
+    res.send(data);
+  });
+});
 app.post("/addtofavorite", (req, res) => {
   recipes.addToFavorite(req, res);
 });

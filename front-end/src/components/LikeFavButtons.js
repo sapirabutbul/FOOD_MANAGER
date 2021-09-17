@@ -41,7 +41,7 @@ class LikeFavButtons extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          uploader_id: this.props.oneRecipe[0].uploader_id,
+          user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
         }),
       })
@@ -55,6 +55,7 @@ class LikeFavButtons extends React.Component {
     }
   };
   handleFavs = (e) => {
+    console.log("user iddddddddddd", this.props.id);
     // console.log("this.props.oneRecipe[0].id", this.props.oneRecipe[0].id);
     if (this.state.addToFavs) {
       this.setState({ addToFavs: false });
@@ -65,7 +66,7 @@ class LikeFavButtons extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          uploader_id: this.props.oneRecipe[0].uploader_id,
+          user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
         }),
       })
@@ -85,7 +86,7 @@ class LikeFavButtons extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          uploader_id: this.props.oneRecipe[0].uploader_id,
+          user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
         }),
       })

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { goToRecipe } from "../redux/actions";
 
 class MyRecipes extends React.Component {
@@ -18,8 +19,8 @@ class MyRecipes extends React.Component {
               console.log("element   :", element);
               return (
                 <>
-                  <div id={element.id} onClick={goToRecipe}>
-                    <h3>{element.title}</h3>
+                  <div>
+                  <Link id={element.id} to="/recipepage" onClick={goToRecipe}>{element.title}</Link>
                   </div>
                 </>
               );

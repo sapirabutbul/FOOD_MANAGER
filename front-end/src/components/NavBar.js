@@ -15,9 +15,14 @@ const NavBar = (props) => {
         <Link className="link" to="/profile" style={{ margin: "5px" }}>
           Profile
         </Link>
-        <Link className="link" to="/register" style={{ margin: "5px" }}>
+        {!token ? (
+          <Link className="link" to="/register" style={{ margin: "5px" }}>
+            Register
+          </Link>
+        ) : null}
+        {/* <Link className="link" to="/register" style={{ margin: "5px" }}>
           Register
-        </Link>
+        </Link> */}
         <Link className="link" to="/signin" style={{ margin: "5px" }}>
           Sign In
         </Link>

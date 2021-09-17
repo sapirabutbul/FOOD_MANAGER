@@ -25,11 +25,11 @@ const uploadRecipe = (req, res) => {
 
 // add recipe to favorite
 const addToFavorite = (req, res) => {
-  console.log(req.body);
+  console.log("req bodyyyyyyyy", req.body);
   db("favorites")
     .insert({
-      user_id: req.body.uploader_id,
-      favorite_recipe_id: [req.body.recipe_id],
+      user_id: req.body.user_id,
+      favorite_recipe_id: req.body.recipe_id,
     })
     .returning("*")
     .then((data) => {
@@ -47,7 +47,7 @@ const removeFromFavorite = (req, res) => {
   db("favorites")
     .where({
       user_id: req.body.uploader_id,
-      favorite_recipe_id: [req.body.recipe_id],
+      favorite_recipe_id: req.body.recipe_id,
     })
     .del()
     .returning("*")
@@ -63,8 +63,8 @@ const addLike = (req, res) => {
   console.log(req.body);
   db("likes")
     .insert({
-      user_id: req.body.uploader_id,
-      liked_recipe_id: [req.body.recipe_id],
+      user_id: req.body.user_id,
+      liked_recipe_id: req.body.recipe_id,
     })
     .returning("*")
     .then((data) => {
@@ -80,7 +80,7 @@ const removeLike = (req, res) => {
   db("likes")
     .where({
       user_id: req.body.user_id,
-      liked_recipe_id: [req.body.recipe_id],
+      liked_recipe_id: req.body.recipe_id,
     })
     .del()
     .returning("*")
@@ -92,21 +92,13 @@ const removeLike = (req, res) => {
       console.log("error in favs", e);
     });
 };
-// const addToFavorite = (req, res) => {
-//   console.log(req.body);
-//   db("users_info")
-//     .insert({
-//       favorite_recipes_id: [req.body.recipe_id],
-//       user_id: req.body.uploader_id,
-//     })
-//     .then((data) => {
-//       console.log("dataaa", data);
-//       res.status(200).json("recipe added to favorites");
-//     })
-//     .catch((e) => {
-//       console.log("error in favs", e);
-//     });
-// };
+const favoritesRecipes = (req, res) => {
+  console.log("req.bodyyyy", req.body);
+  return db
+    .select("favorite_recipe_id")
+    .from("favorites")
+    .where({ user_id: req.body.user_id });
+};
 
 // const addLike = (req, res) => {
 //   console.log(req.body);
@@ -142,4 +134,5 @@ module.exports = {
   goToRecipe,
   addLike,
   removeLike,
+  favoritesRecipes,
 };

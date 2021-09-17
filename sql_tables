@@ -24,21 +24,22 @@ create table users_info (
 create table favorites (
 	id serial not null primary key,
 	user_id integer not null references users(id),
-	favorite_recipe_id varchar[],
+	favorite_recipe_id integer,
 	 UNIQUE(user_id,favorite_recipe_id )
 )
 create table likes (
 	id serial not null primary key,
 	user_id integer not null references users(id),
-	liked_recipe_id varchar[],
+	liked_recipe_id integer,
 	 UNIQUE(user_id,liked_recipe_id )
 )
+drop table favorites
 select * from favorites
 select * from likes
 delete from likes
-select * from users_info
+select * from users
 delete from favorites
-drop table users_info
+select * from users_info
 create table recipes (
 	id serial not null primary key,
 	title varchar(300) not null,

@@ -1,62 +1,6 @@
-// import React from "react";
-// import withAuth from "../withAuth";
-// import { Switch, Route, Link } from "react-router-dom";
-// import { BrowserRouter } from "react-router-dom";
-// import { connect } from "react-redux";
-// import FavoriteRecipes from "./FavoriteRecipes";
-// import ProfileManu from "./ProfileManu";
-// import ProfileRoute from "./ProfileRoute";
-// import UploadRecipe from "./UploadRecipe";
-// import UserInfo from "./UserInfo";
-// import MyRecipes from "./MyRecipes";
-
-// class Profile extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
-//   render() {
-//     const { path } = this.props.match;
-//     console.log("profile props", this.props);
-//     const { user, token } = this.props;
-//     return (
-//       <div>
-//         <h2>Profile</h2>
-//         <div>
-//           <ProfileManu />
-//           <ProfileRoute />
-//         </div>
-//         <MyRecipes />
-//         <UploadRecipe />
-//         {/* <div>
-//           <UploadRecipe />
-//           <MyRecipes />
-//           <FavoriteRecipes />
-//           <ShoppingList />
-//         </div> */}
-//       </div>
-//     );
-//   }
-// }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     name: state.userReducer.name,
-//     email: state.userReducer.email,
-//     id: state.userReducer.user_id,
-//   };
-// };
-// // const mapDispatchToProps = (dispatch) => {
-// //   return {
-// //     uploadUser: (e) => dispatch(uploadUser(e)),
-// //   };
-// // };
-// export default connect(mapStateToProps, null)(Profile);
-
 import React from "react";
 import withAuth from "../withAuth";
 import { Switch, Route, Link, withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import FavoriteRecipes from "./FavoriteRecipes";
 import MyRecipes from "./MyRecipes";
@@ -97,6 +41,13 @@ class Profile extends React.Component {
           >
             Upload a Recipe
           </Link>
+          <Link
+            className="link"
+            to={`${this.props.match.url}/shoppinglist`}
+            style={{ margin: "5px" }}
+          >
+            Shopping List Maker
+          </Link>
         </div>
         <div>
           <UserInfo />
@@ -115,7 +66,10 @@ class Profile extends React.Component {
               path={`${this.props.match.path}/favoriterecipes`}
               render={() => <FavoriteRecipes />}
             />
-
+            <Route
+              path={`${this.props.match.path}/shoppinglist`}
+              render={() => <ShoppingList />}
+            />
             {/* <Route
               path="/uploadrecipe"
               children={<UploadRecipe user={user} token={token} />}

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class UploadRecipe extends React.Component {
   constructor(props) {
@@ -68,9 +69,10 @@ class UploadRecipe extends React.Component {
       .catch((e) => {
         console.log(e);
       });
+    console.log("this.props upload recipe", this.props);
+    this.props.history.push(`/profile/myrecipes`);
   };
   render() {
-    console.log("upload recipe props", this.props);
     const { inputs } = this.state;
     return (
       <>
@@ -163,7 +165,7 @@ const mapStateToProps = (state) => {
 //     uploadUser: (e) => dispatch(uploadUser(e)),
 //   };
 // };
-export default connect(mapStateToProps, null)(UploadRecipe);
+export default connect(mapStateToProps, null)(withRouter(UploadRecipe));
 
 // import React from "react";
 
