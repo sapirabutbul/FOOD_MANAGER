@@ -1,6 +1,7 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
+import { resetShoppingList } from "../redux/actions";
 class UserShopList extends React.Component {
   constructor() {
     super();
@@ -10,29 +11,109 @@ class UserShopList extends React.Component {
   }
 
   componentDidMount() {
+    console.log("componentDidMount");
+    this.handleShoppingList();
+  }
+  handleShoppingList = () => {
     const { recipes, shoppingList_id } = this.props;
     let allIngredientsList = [];
-    recipes.map((element, i) => {
-      return shoppingList_id.map((item) => {
-        if (parseInt(item) === parseInt(element.id)) {
-          const { ingredients } = element;
-          console.log("ingredients", JSON.parse(ingredients));
-          JSON.parse(ingredients).forEach((element) => {
-            console.log("element hhgdhdh", element);
-            allIngredientsList.push(element);
-          });
-        }
+    if (!shoppingList_id) {
+      return null;
+    } else {
+      recipes.map((element, i) => {
+        return shoppingList_id.map((item) => {
+          if (parseInt(item) === parseInt(element.id)) {
+            const { ingredients } = element;
+            JSON.parse(ingredients).forEach((element) => {
+              allIngredientsList.push(element);
+            });
+          }
+        });
       });
-    });
-    console.log("allIngredientsList", allIngredientsList);
-    this.setState({ ingredients: allIngredientsList });
-  }
+      console.log("allIngredientsList beforeee", allIngredientsList);
+      let finalIngredientsList = [];
+      let doubleValues = [];
+      let newAmount;
+      let length = allIngredientsList.length;
+      for (let i = 0; i < length; i++) {
+        for (let j = i + 1; j < allIngredientsList.length; j++) {
+          if (allIngredientsList[i].item === allIngredientsList[j].item) {
+            doubleValues.push(allIngredientsList[i].item);
+            if (allIngredientsList[i].unit === allIngredientsList[j].unit) {
+              newAmount =
+                parseInt(allIngredientsList[i].amount) +
+                parseInt(allIngredientsList[j].amount);
+              finalIngredientsList.push({
+                amount: newAmount,
+                unit: allIngredientsList[i].unit,
+                item: allIngredientsList[i].item,
+              });
+              allIngredientsList.splice(j, 1);
+            } else {
+              finalIngredientsList.push({
+                amount:
+                  allIngredientsList[i].amount +
+                  " " +
+                  allIngredientsList[i].unit +
+                  " & ",
+                unit:
+                  allIngredientsList[j].amount +
+                  " " +
+                  allIngredientsList[j].unit,
+                item: allIngredientsList[i].item,
+              });
+              allIngredientsList.splice(j, 1);
+              console.log("allIngredientsList in the else", allIngredientsList);
+            }
+          }
+        }
+      }
+      console.log("endddd doubleValues", doubleValues);
+      console.log("endddd finalIngredientsList", finalIngredientsList);
+      console.log("endddd allIngredientsList", allIngredientsList);
+      console.log("finalIngredientsList bfgdgfdgdhfdhd", finalIngredientsList);
+
+      for (let k = 0; k < finalIngredientsList.length; k++) {
+        const item = finalIngredientsList[k];
+        allIngredientsList.map((element, index) => {
+          if (element.item !== item.item) {
+            console.log("element aaaaaaaaaaaa not equal", index, element);
+          } else {
+            allIngredientsList.splice(index, 1);
+            console.log(
+              "allIngredientsList in the last if",
+              allIngredientsList
+            );
+            console.log("element bbbbbbbbbbbb equal", index, element);
+          }
+        });
+      }
+      this.setState({
+        ingredients: [...finalIngredientsList, ...allIngredientsList],
+      });
+      console.log("allIngredientsList", allIngredientsList);
+      console.log("finalIngredientsList", finalIngredientsList);
+    }
+  };
+
   render() {
     console.log("this.state.ingredients", this.state.ingredients);
-    const { recipes, shoppingList_id } = this.props;
+    const { ingredients } = this.state;
+
     return (
       <div style={{ border: "1px solid green" }}>
-        {/* {console.log("this.props.shoppingList_id", shoppingList_id)} */}
+        <ul>
+          {ingredients.map((element) => {
+            // console.log("element   :", element);
+            return (
+              <>
+                <li>
+                  {element.amount} {element.unit} {element.item}
+                </li>
+              </>
+            );
+          })}
+        </ul>
       </div>
     );
   }
@@ -50,34 +131,7 @@ const mapStateToProps = (state) => {
 };
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     fetchFavoritesRecipes: (e) => dispatch(fetchFavoritesRecipes(e)),
+//     resetShoppingList: (e) => dispatch(resetShoppingList(e)),
 //   };
 // };
 export default connect(mapStateToProps, null)(UserShopList);
-
-{
-  /* <ul>
-          {recipes.map((element, i) => {
-            console.log("element recipes map  :", element);
-            return shoppingList_id.map((item) => {
-              console.log("itemm", item);
-              //   let favrecipes = item.favorite_recipe_id;
-              console.log("element shopping list map  :", element);
-              if (parseInt(item) === parseInt(element.id)) {
-                {
-                  console.log(
-                    "element shopping list map inside if  gdhggggggggggggggggggggggggggggggggggggggggggggggggggggggshdjdjd :",
-                    element
-                  );
-                }
-                return (
-                  <>
-                    <li>{element.title}</li>
-                   
-                  </>
-                );
-              }
-            });
-          })}
-        </ul> */
-}

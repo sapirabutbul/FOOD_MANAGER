@@ -23,6 +23,7 @@ class LikeFavButtons extends React.Component {
         body: JSON.stringify({
           user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
+          uploader_id: this.props.oneRecipe[0].uploader_id,
         }),
       })
         .then((res) => res.json())
@@ -43,6 +44,7 @@ class LikeFavButtons extends React.Component {
         body: JSON.stringify({
           user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
+          uploader_id: this.props.oneRecipe[0].uploader_id,
         }),
       })
         .then((res) => res.json())
@@ -68,6 +70,7 @@ class LikeFavButtons extends React.Component {
         body: JSON.stringify({
           user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
+          uploader_id: this.props.oneRecipe[0].uploader_id,
         }),
       })
         .then((res) => res.json())
@@ -88,6 +91,7 @@ class LikeFavButtons extends React.Component {
         body: JSON.stringify({
           user_id: this.props.id,
           recipe_id: this.props.oneRecipe[0].id,
+          uploader_id: this.props.oneRecipe[0].uploader_id,
         }),
       })
         .then((res) => res.json())

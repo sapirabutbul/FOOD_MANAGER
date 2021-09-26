@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router";
 import { connect } from "react-redux";
-
 import "./App.css";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -13,12 +12,8 @@ import DeleteUser from "./components/DeleteUser";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import withAuth from "./withAuth";
-import { uploadUser } from "./redux/actions";
-import FavoriteRecipes from "./components/FavoriteRecipes";
-import MyRecipes from "./components/MyRecipes";
+import { uploadUser, fetchAllRecipes } from "./redux/actions";
 import RecipePage from "./components/RecipePage";
-
-import UploadRecipe from "./components/UploadRecipe";
 
 class App extends React.Component {
   constructor() {
@@ -32,6 +27,9 @@ class App extends React.Component {
       },
       token: null,
     };
+  }
+  componentDidMount() {
+    this.props.fetchAllRecipes();
   }
   loadUser = (data) => {
     this.setState({
@@ -103,6 +101,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     uploadUser: (e) => dispatch(uploadUser(e)),
+    fetchAllRecipes: (e) => dispatch(fetchAllRecipes(e)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

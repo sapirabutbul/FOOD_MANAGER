@@ -2,16 +2,21 @@ import React from "react";
 import withAuth from "../withAuth";
 import { Switch, Route, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { fetchLikesFavsInfo } from "../redux/actions";
 import FavoriteRecipes from "./FavoriteRecipes";
 import MyRecipes from "./MyRecipes";
 import ShoppingList from "./ShoppingList";
 import UploadRecipe from "./UploadRecipe";
 import UserInfo from "./UserInfo";
+import UserShopList from "./UserShopList";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+  componentDidMount() {
+    this.props.fetchLikesFavsInfo();
   }
   render() {
     console.log("profile props", this.props);
@@ -71,8 +76,8 @@ class Profile extends React.Component {
               render={() => <ShoppingList />}
             />
             {/* <Route
-              path="/uploadrecipe"
-              children={<UploadRecipe user={user} token={token} />}
+              path={`${this.props.match.path}/usershoplist`}
+              render={() => <UserShopList />}
             /> */}
           </Switch>
         </div>
@@ -88,9 +93,12 @@ const mapStateToProps = (state) => {
     id: state.userReducer.user_id,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     uploadUser: (e) => dispatch(uploadUser(e)),
-//   };
-// };
-export default connect(mapStateToProps, null)(withRouter(Profile));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchLikesFavsInfo: (e) => dispatch(fetchLikesFavsInfo(e)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Profile));

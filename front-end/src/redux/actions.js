@@ -6,6 +6,8 @@ export const FILTER_RECIPES = "FILTER_RECIPES";
 export const SORT_RECIPES = "SORT_RECIPES";
 export const FAVORITES_RECIPES = "FAVORITES_RECIPES";
 export const SHOPPING_LIST = "SHOPPING_LIST";
+export const RESET_LIST = "RESET_LIST";
+export const FETCH_LIKES_FAVS = "FETCH_LIKES_FAVS";
 
 export const uploadUser = (value) => {
   return {
@@ -84,8 +86,33 @@ export const fetchFavoritesRecipes = (value) => (dispatch) => {
     });
 };
 export const makeShoppingList = (value) => {
+  let recipes_id = [];
+  for (let i = 0; i < value.target.length - 1; i++) {
+    const element = value.target[i];
+    if (element.checked) {
+      recipes_id.push(element.id);
+    }
+  }
   return {
     type: SHOPPING_LIST,
+    payload: recipes_id,
+  };
+};
+// export const resetShoppingList = (value) => {
+//   return {
+//     type: RESET_LIST,
+//     payload: value,
+//   };
+// };
+export const fetchLikesFavsInfo = (value) => {
+  return {
+    type: FETCH_LIKES_FAVS,
+    payload: value,
+  };
+};
+export const handleReset = (value) => {
+  return {
+    type: RESET_LIST,
     payload: value,
   };
 };

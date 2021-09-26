@@ -6,7 +6,7 @@ import LikeFavButtons from "./LikeFavButtons";
 class RecipesPage extends React.Component {
   goBackHome = () => {
     console.log("props", this.props);
-    this.props.history.push("/");
+    this.props.history.goBack();
   };
   render() {
     console.log("this props of recipe page", this.props);
@@ -32,7 +32,7 @@ class RecipesPage extends React.Component {
                   // console.log("element", element);
                   return (
                     <li>
-                      {element.amount} {element.item}
+                      {element.amount} {element.unit} {element.item}
                     </li>
                   );
                 })}

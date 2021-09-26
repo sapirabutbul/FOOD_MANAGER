@@ -17,7 +17,6 @@ const handleRegister = (req, res) => {
       })
       .returning("email")
       .then((loginEmail) => {
-        console.log("check");
         return trx("users")
           .insert({
             email: loginEmail[0],

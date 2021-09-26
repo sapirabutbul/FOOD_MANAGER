@@ -1,18 +1,31 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
 
 class UserInfo extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-
-        }
-    }
-    render(){
-        return(
-            <div>
-                <h2>UserInfo</h2>
-            </div>
-        )
-    }
+  constructor() {
+    super();
+    this.state = {};
+  }
+  render() {
+    const { name } = this.props;
+    return (
+      <div>
+        <h2>My Kitchen</h2>
+        <h4>Hello {name}, Happy to see you today!</h4>
+      </div>
+    );
+  }
 }
-export default UserInfo;
+const mapStateToProps = (state) => {
+  return {
+    name: state.userReducer.name,
+    email: state.userReducer.email,
+    id: state.userReducer.user_id,
+  };
+};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     uploadUser: (e) => dispatch(uploadUser(e)),
+//   };
+// };
+export default connect(mapStateToProps, null)(UserInfo);

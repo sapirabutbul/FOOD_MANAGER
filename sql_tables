@@ -14,12 +14,10 @@ select * from login
 select * from users
 user info- reference by email to users table,  user name, uploaded recipes, favorite recipes, xp points, joined date, chosen recipes, shopping list 
 
-create table users_info (
+create table user_points (
 	id serial not null primary key,
 	user_id integer not null unique references users(id),
-	uploaded_recipes_id varchar[],
-	favorite_recipes_id varchar[],
-	users_points serial
+	points integer
 )
 create table favorites (
 	id serial not null primary key,
@@ -33,13 +31,14 @@ create table likes (
 	liked_recipe_id integer,
 	 UNIQUE(user_id,liked_recipe_id )
 )
-drop table favorites
+drop table users_info
 select * from favorites
 select * from likes
+delete from user_points
+select * from user_points
 delete from likes
 select * from users
-delete from favorites
-select * from users_info
+select * from login
 create table recipes (
 	id serial not null primary key,
 	title varchar(300) not null,
@@ -47,10 +46,9 @@ create table recipes (
 	description text not null,
 	uploader_id integer not null references users(id),
 	uploader_name varchar(100),
-	likes integer, 
 	upload_date date not null default CURRENT_DATE
 )
 select * from recipes
+delete from recipes
 drop table recipes
-
 select ingredients ->> 'amount' as amount from recipes 

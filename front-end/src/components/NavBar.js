@@ -20,12 +20,12 @@ const NavBar = (props) => {
             Register
           </Link>
         ) : null}
-        {/* <Link className="link" to="/register" style={{ margin: "5px" }}>
-          Register
-        </Link> */}
-        <Link className="link" to="/signin" style={{ margin: "5px" }}>
-          Sign In
-        </Link>
+        {!token ? (
+          <Link className="link" to="/signin" style={{ margin: "5px" }}>
+            Sign In
+          </Link>
+        ) : null}
+
         {token ? (
           <Link className="link" to="/signout" style={{ margin: "5px" }}>
             Sign out

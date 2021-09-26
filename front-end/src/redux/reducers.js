@@ -6,6 +6,8 @@ import {
   SORT_RECIPES,
   FAVORITES_RECIPES,
   SHOPPING_LIST,
+  RESET_LIST,
+  FETCH_LIKES_FAVS,
 } from "./actions";
 import { combineReducers } from "redux";
 
@@ -15,6 +17,10 @@ const userInitState = {
     email: "",
     user_id: "",
     token: null,
+  },
+  info: {
+    howManyLikes: null,
+    howManyFavorites: null,
   },
 };
 
@@ -47,7 +53,10 @@ export const recipesReducer = (state = recipesInitState, action = {}) => {
       return { ...state, oneRecipe: action.payload };
     case FILTER_RECIPES:
       const filterRecipes = state.recipes.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
+        return (
+          item.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+          item.description.toLowerCase().includes(action.payload.toLowerCase())
+        );
       });
       return { ...state, filterRecipes: filterRecipes };
     case SORT_RECIPES:
@@ -122,7 +131,10 @@ export const recipesReducer = (state = recipesInitState, action = {}) => {
     case FAVORITES_RECIPES:
       return { ...state, favoritesRecipes_id: action.payload };
     case SHOPPING_LIST:
-      return { ...state, shoppingList_id: action.payload };
+      console.log("action.payload", action.payload);
+      return { ...state, shoppingList_id: [...action.payload] };
+    case RESET_LIST:
+      return { ...state, shoppingList_id: null };
     default:
       return { ...state };
   }

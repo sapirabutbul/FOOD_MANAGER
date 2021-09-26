@@ -31,7 +31,6 @@ app.post("/uploadrecipe", (req, res) => {
   recipes.uploadRecipe(req, res);
 });
 app.get("/showallrecipes", (req, res) => {
-  console.log("checking show all recipes");
   recipes.showAllRecipes().then((data) => {
     res.send(data);
   });
@@ -46,7 +45,6 @@ app.post("/gotorecipe", (req, res) => {
 app.post("/favoritesrecipes", (req, res) => {
   console.log("reqqqqqqq", req.body);
   recipes.favoritesRecipes(req, res).then((data) => {
-    console.log("dataaaaaaaaaaaaa", data);
     res.send(data);
   });
 });

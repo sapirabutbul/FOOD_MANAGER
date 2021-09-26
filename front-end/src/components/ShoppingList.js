@@ -1,35 +1,60 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchFavoritesRecipes, makeShoppingList } from "../redux/actions";
+import {
+  fetchFavoritesRecipes,
+  makeShoppingList,
+  handleReset,
+} from "../redux/actions";
 import UserShopList from "./UserShopList";
 
 class ShoppingList extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     userListOn: false,
+  //   };
+  // }
   componentDidMount() {
     this.props.fetchFavoritesRecipes(this.props.id);
   }
+  // checkReset = (e) => {
+  //   e.preventDefault();
+  //   if (!this.state.userListOn) {
+  //     this.setState({ userListOn: true });
+  //     this.props.handleReset();
+  //     this.submitList(e);
+  //   } else {
+  //     this.submitList(e);
+  //   }
+  // };
   submitList = (e) => {
     e.preventDefault();
-    let recipes_id = [];
-    for (let i = 0; i < e.target.length - 1; i++) {
-      const element = e.target[i];
-      // console.log("check", element.checked);
-      if (element.checked) {
-        // console.log("value", element.value);
-        // console.log("value", element.id);
-        recipes_id.push(element.id);
-      }
-      // console.log("recipes_id      :", recipes_id);
-      this.props.makeShoppingList(recipes_id);
-    }
-    // e.target.forEach((element) => {
-    //   console.log("elementtttttt", element);
-    // });
+    console.log("eeeeeeeeeeeeeee", e);
+    // let recipes_id = [];
+    // for (let i = 0; i < e.target.length - 1; i++) {
+    //   const element = e.target[i];
+    //   if (element.checked) {
+    //     recipes_id.push(element.id);
+    //   }
+    //   console.log("recipes_id      :", recipes_id);
+    this.props.makeShoppingList(e);
+    // }
   };
+  // submitList = (e) => {
+  //   e.preventDefault();
+  //   console.log("eeeeeeeeeeeeeee", e);
+  //   let recipes_id = [];
+  //   for (let i = 0; i < e.target.length - 1; i++) {
+  //     const element = e.target[i];
+  //     if (element.checked) {
+  //       recipes_id.push(element.id);
+  //     }
+  //     console.log("recipes_id      :", recipes_id);
+  //     this.props.makeShoppingList(recipes_id);
+  //   }
+  // };
   render() {
+    console.log("shoppingList_id", this.props.shoppingList_id);
     const { favoritesRecipes_id, recipes, id, shoppingList_id } = this.props;
     return (
       <div>
@@ -96,6 +121,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchFavoritesRecipes: (e) => dispatch(fetchFavoritesRecipes(e)),
     makeShoppingList: (e) => dispatch(makeShoppingList(e)),
+    handleReset: (e) => dispatch(handleReset(e)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);
