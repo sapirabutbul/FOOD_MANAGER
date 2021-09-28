@@ -11,15 +11,25 @@ const RecipeCard = (props) => {
     date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   return (
     <>
-      <div key={id} id={id} style={{ border: "2px solid blue" }}>
+      <div
+        key={id}
+        id={id}
+        className="tc grow br3 pa2 ma3 dib bw2 shadow-5 w5 cardColor flex flex-column justify-between"
+      >
         <div>
-          <h2>Recipe name: {title}</h2>
+          <h2 className="">{title}</h2>
           <h3>upload by: {uploader_name}</h3>
-          <h3>upload date: {uploadDate}</h3>
-          <Link to="/recipepage" onClick={props.goToRecipe} id={id}>
-            Go To Recipe
-          </Link>
+          <h5>upload date: {uploadDate}</h5>
         </div>
+
+        <Link
+          className="cardlink f6 link dim br-pill ph3 pv2 mb2 ml5 mr5 dib white bg-red"
+          to="/recipepage"
+          onClick={props.goToRecipe}
+          id={id}
+        >
+          Go To Recipe
+        </Link>
       </div>
     </>
   );

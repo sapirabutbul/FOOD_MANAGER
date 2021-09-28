@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -74,16 +73,11 @@ class Register extends React.Component {
               onChange={this.onPasswordChange}
             />
           </div>
-          <div>
-            <input
-              className="submitButton"
-              type="submit"
-              onClick={this.onSubmitSignIn}
-              value="Register"
-            />
-          </div>
+
+          <button className="submitButton" onClick={this.onSubmitSignIn}>
+            Register
+          </button>
         </div>
-        <Link to="/signin">Sign In</Link>
       </>
     );
   }

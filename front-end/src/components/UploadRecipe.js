@@ -161,6 +161,7 @@ class UploadRecipe extends React.Component {
               name="description"
               id="description"
               onChange={this.onDescriptionChange}
+              className="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2"
             />
           </div>
           <div>

@@ -13,15 +13,19 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div>
-          <h1>Welcome To Food Manager!</h1>
-          <h2>Sharing is caring, especially when it comes to food!</h2>
+      <>
+        <a name="top"></a>
+        <div style={{ border: "1px solid blue" }}>
+          <header className="tc mt0">
+            <h1>Welcome To Food Manager!</h1>
+            <h2>Sharing is caring</h2>
+            <h2 className="f2">Especially when it comes to food!</h2>
+          </header>
+          <ErrorBoundary>
+            <RecipesBook />
+          </ErrorBoundary>
         </div>
-        <ErrorBoundary>
-          <RecipesBook />
-        </ErrorBoundary>
-      </div>
+      </>
     );
   }
 }

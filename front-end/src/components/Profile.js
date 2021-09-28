@@ -23,9 +23,8 @@ class Profile extends React.Component {
     console.log("profile props", this.props);
     const { user, token } = this.props;
     return (
-      <div>
-        <h2>Profile</h2>
-        <div>
+      <div className="">
+        <div className="bg-gold db dt-l w-100 border-box pa2 ph5-l fixed">
           <Link
             className="link"
             to={`${this.props.match.url}/myrecipes`}
@@ -55,7 +54,7 @@ class Profile extends React.Component {
             Shopping List Maker
           </Link>
         </div>
-        <div>
+        <div className="mt5">
           <UserInfo />
         </div>
         <div style={{ border: "1px solid blue", height: "500px" }}>

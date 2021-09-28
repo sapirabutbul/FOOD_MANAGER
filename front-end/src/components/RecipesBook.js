@@ -29,13 +29,23 @@ class RecipesBook extends React.Component {
     console.log("recipessssss", this.props.recipes);
 
     return (
-      <div>
-        <h2>RecipesBook</h2>
+      <div className="tc mt6">
+        <h1 className="headers">Our Recipes</h1>
         <div>
           <form onSubmit={this.SubmitSearch}>
-            <input type="text" />
-            <button type="submit">Search Recipes</button>
-            <select name="sort" id="sort" onChange={this.handleSort}>
+            <input type="text" className="w-25 br3 h2 ma3" />
+            <button
+              type="submit"
+              className="f6 link dim br3 ph3 pv2 mb2 dib white bg-gold"
+            >
+              Search Recipes
+            </button>
+            <select
+              name="sort"
+              id="sort"
+              onChange={this.handleSort}
+              className="f6 link dim br3 ph3 pv2 mb2 dib black bg-white ma2"
+            >
               <option defaultValue hidden>
                 Sort By
               </option>
@@ -45,7 +55,7 @@ class RecipesBook extends React.Component {
             </select>
           </form>
         </div>
-        <div>
+        <div className="flex flex-wrap">
           {(this.props.filterRecipes
             ? this.props.filterRecipes
             : this.props.recipes

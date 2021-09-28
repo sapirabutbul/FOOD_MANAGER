@@ -36,26 +36,30 @@ class Tips extends React.Component {
   render() {
     return (
       <div className="background">
+        <h1 className="tipInfo headers">Tips</h1>
+        <h2 className="tipInfo">
+          Cooking tips and tricks make us cook better and easier!
+        </h2>
+
         <div
           style={{
             backgroundColor: this.state.color,
-            width: "300px",
-            height: "300px",
           }}
           className="bg-white tc br3 qouteBox"
         >
-          <h1>{this.state.tip}</h1>
+          <h3 className="tip">{this.state.tip}</h3>
 
           <div className="divButton">
             <button
               type="submit"
               onClick={this.pickRandomQuote}
-              className="f6 link dim br-pill ba bw1 ph3 pv2 mb2 dib white"
+              className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black"
             >
               give me a random tip!
             </button>
           </div>
         </div>
+        <h3 className="tipInfo">Enjoy!</h3>
       </div>
     );
   }

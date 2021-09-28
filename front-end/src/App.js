@@ -16,6 +16,7 @@ import { uploadUser, fetchAllRecipes } from "./redux/actions";
 import RecipePage from "./components/RecipePage";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Tips from "./components/Tips";
+import "tachyons";
 class App extends React.Component {
   constructor() {
     super();
@@ -51,7 +52,7 @@ class App extends React.Component {
     return (
       <>
         <NavBar />
-        <div>
+        <div className="appcontainer">
           <ErrorBoundary>
             <Switch>
               <Route path="/" exact children={<Home />} />

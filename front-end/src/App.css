@@ -1,8 +1,139 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@300&display=swap');
+*{
+  font-family: 'Mukta Mahee', sans-serif;
+}
+nav{
+  z-index: +1;
+}
+.appcontainer{
+  margin-top: 92px;
+ 
+}
+.headers{
+  font-size: 70px;
   text-align: center;
 }
-
+header{
+  background-color: rgb(255, 175, 76);
+  height: 500px;
+  
+}
+header h1{
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 130px;
+  padding-top: 55px;
+}
+header h2{
+  margin-top: 48px;
+  font-size: 80px;
+  padding-top: 10px;
+}
+footer{
+  
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+h2{
+  font-size: 35px;
+  margin: 10px auto;
+}
+h3{
+  margin: 10px auto;
+  font-size: 25px;
+}
 #description{
-  width: 200px;
   height: 200px;
 }
+.cardColor{
+background-color: rgb(253, 221, 178);
+height: 300px;
+}
+.cardlink{
+ margin-top: auto;
+ margin-bottom: 3px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 150px auto;
+  background-color: rgb(253, 221, 178) ;
+  box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 ); 
+}
+.inputBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+  /* border: 1px solid red; */
+}
+#name, #password, #email{
+  margin: 7px 15px 7px auto;
+  width: 65%;
+  padding: 5px;
+  border-radius: 5px;
+}
+.submitButton{
+  width: 90px;
+  margin: 20px auto;
+  padding: 5px 10px;
+  border:2px solid black;
+  border-radius: 5px;
+  background-color: rgb(20, 20, 114);
+  color: white;
+  font-size: 18px;
+}
+
+label{
+  font-size: 19px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.background{
+  width: 100%;
+  height: 100vh;
+  margin:0;
+  display:flex;
+  flex-direction: column;
+  }
+  .qouteBox{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    padding: 10px;
+    width:550px;
+    height: 350px;
+  }
+  .tip{
+  font-size: 35px;
+  }
+  .divButton{
+    margin: auto 10px 5px auto;
+  }
+  .tipInfo{
+    margin:20px auto;
+  }
+  .about{
+    font-size: 32px;
+    text-align: left;
+    display: inline-block;
+    margin: 10px 45px;
+  }
+  .aboutHeader{
+    margin: 30px auto 10px;
+    font-size: 50px;
+  }
+  .aboutBox{
+    display: flex;
+  flex-direction: column;
+  width: 950px;
+  height: 400px;
+  border-radius: 15px;
+  margin: 130px auto;
+  background-color: rgb(253, 221, 178) ;
+  box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 ); 
+  }

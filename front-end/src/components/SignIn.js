@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -59,13 +59,11 @@ class Signin extends React.Component {
               onChange={this.onPasswordChange}
             />
           </div>
-          <div>
-            <button className="submitButton" onClick={this.onSubmitSignIn}>
-              Sign In
-            </button>
-          </div>
+
+          <button className="submitButton" onClick={this.onSubmitSignIn}>
+            Sign In
+          </button>
         </div>
-        <Link to="/register">Register</Link>
       </>
     );
   }
