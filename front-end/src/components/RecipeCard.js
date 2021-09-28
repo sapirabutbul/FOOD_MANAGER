@@ -5,13 +5,17 @@ import { goToRecipe } from "../redux/actions";
 const RecipeCard = (props) => {
   const { eachRecipe } = props;
   // console.log("eachRecipe", eachRecipe);
-  const { id, title, uploader_name } = eachRecipe;
+  const { id, title, uploader_name, upload_date } = eachRecipe;
+  let date = new Date(upload_date);
+  let uploadDate =
+    date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   return (
     <>
       <div key={id} id={id} style={{ border: "2px solid blue" }}>
         <div>
           <h2>Recipe name: {title}</h2>
           <h3>upload by: {uploader_name}</h3>
+          <h3>upload date: {uploadDate}</h3>
           <Link to="/recipepage" onClick={props.goToRecipe} id={id}>
             Go To Recipe
           </Link>

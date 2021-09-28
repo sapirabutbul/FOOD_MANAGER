@@ -33,6 +33,24 @@ const handleRegister = (req, res) => {
           });
       })
       .then(trx.commit)
+      .then((data) => {
+        console.log("data!!!!!!!!!", data);
+        db("users")
+          .select("id")
+          .where({ email: email })
+          .returning("*")
+          .then((id) => {
+            console.log("id!!!!!!!!!", id[0].id);
+            db("user_points")
+              .insert({
+                user_id: id[0].id,
+                points: 0,
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          });
+      })
       .catch((e) => {
         console.log("error in transaction:", e);
         trx.rollback;

@@ -16,7 +16,7 @@ user info- reference by email to users table,  user name, uploaded recipes, favo
 
 create table user_points (
 	id serial not null primary key,
-	user_id integer not null unique references users(id),
+	user_id integer not null unique,
 	points integer
 )
 create table favorites (
@@ -31,11 +31,20 @@ create table likes (
 	liked_recipe_id integer,
 	 UNIQUE(user_id,liked_recipe_id )
 )
-drop table users_info
+drop table user_points
 select * from favorites
 select * from likes
 delete from user_points
 select * from user_points
+insert into user_points(user_id, points)
+values(14,0),
+(15,0),
+(16,0),
+(17,0),
+(18,0),
+(19,0),
+(20,0),
+(21,0)
 delete from likes
 select * from users
 select * from login
@@ -49,6 +58,6 @@ create table recipes (
 	upload_date date not null default CURRENT_DATE
 )
 select * from recipes
-delete from recipes
+delete from recipes where id = 6
 drop table recipes
 select ingredients ->> 'amount' as amount from recipes 

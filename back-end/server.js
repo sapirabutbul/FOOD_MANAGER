@@ -12,6 +12,7 @@ const app = exp();
 env.config();
 app.use(cors());
 app.use(bodyParser.json());
+
 // handle account- (register, login, delete user, check token)
 app.post("/register", (req, res) => {
   register.handleRegister(req, res);
@@ -36,18 +37,29 @@ app.get("/showallrecipes", (req, res) => {
   });
 });
 app.post("/gotorecipe", (req, res) => {
-  console.log("reqqqqqqq", req.body);
   recipes.goToRecipe(req, res).then((data) => {
-    console.log("dataaaaaaaaaaaaa", data);
     res.send(data);
   });
 });
 app.post("/favoritesrecipes", (req, res) => {
-  console.log("reqqqqqqq", req.body);
   recipes.favoritesRecipes(req, res).then((data) => {
     res.send(data);
   });
 });
+// check like and favorites
+app.post("/checkfavbutton", (req, res) => {
+  console.log("reqqqqqqq", req.body);
+  recipes.checkFavs(req, res).then((data) => {
+    res.send(data);
+  });
+});
+app.post("/checklikebutton", (req, res) => {
+  console.log("reqqqqqqq", req.body);
+  recipes.checkLikes(req, res).then((data) => {
+    res.send(data);
+  });
+});
+// add or remove like or favorite
 app.post("/addtofavorite", (req, res) => {
   recipes.addToFavorite(req, res);
 });
@@ -60,6 +72,15 @@ app.post("/addlike", (req, res) => {
 });
 app.post("/removelike", (req, res) => {
   recipes.removeLike(req, res);
+});
+
+// fetch user points
+app.post("/fetchpoints", (req, res) => {
+  console.log("checkkkkkkkkkkkkkkkkkkk");
+  recipes.fetchPoints(req, res).then((data) => {
+    console.log("dddddddddeeeeee", data);
+    res.send(data);
+  });
 });
 
 app.listen(process.env.PORT, () => {

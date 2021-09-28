@@ -95,13 +95,14 @@ class UserShopList extends React.Component {
       console.log("finalIngredientsList", finalIngredientsList);
     }
   };
-
   render() {
-    console.log("this.state.ingredients", this.state.ingredients);
+    console.log("shoppingList_name", this.props.shoppingList_name);
     const { ingredients } = this.state;
+    const { shoppingList_name } = this.props;
 
     return (
       <div style={{ border: "1px solid green" }}>
+        <h2>Shopping List:</h2>
         <ul>
           {ingredients.map((element) => {
             // console.log("element   :", element);
@@ -114,6 +115,20 @@ class UserShopList extends React.Component {
             );
           })}
         </ul>
+        <h3>made from those recipes:</h3>
+        <ul>
+          {shoppingList_name.map((element) => {
+            console.log("element   :", element);
+            return (
+              <>
+                <li>{element}</li>
+              </>
+            );
+          })}
+        </ul>
+        <Link className="link" to={`shoppinglist`}>
+          Go Back
+        </Link>
       </div>
     );
   }
@@ -127,11 +142,12 @@ const mapStateToProps = (state) => {
     oneRecipe: state.recipesReducer.oneRecipe,
     favoritesRecipes_id: state.recipesReducer.favoritesRecipes_id,
     shoppingList_id: state.recipesReducer.shoppingList_id,
+    shoppingList_name: state.recipesReducer.shoppingList_name,
   };
 };
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     resetShoppingList: (e) => dispatch(resetShoppingList(e)),
+//     resetShoppingList: () => dispatch(resetShoppingList()),
 //   };
 // };
 export default connect(mapStateToProps, null)(UserShopList);

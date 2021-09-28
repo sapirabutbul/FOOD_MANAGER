@@ -4,18 +4,36 @@ import { withRouter } from "react-router-dom";
 import LikeFavButtons from "./LikeFavButtons";
 
 class RecipesPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: false,
+      likeButton: "Like",
+      addToFavs: false,
+      favsButton: "Add To Favorites",
+    };
+  }
+  // componentDidMount() {
+  //   this.props.fetchPoints();
+  // }
   goBackHome = () => {
     console.log("props", this.props);
     this.props.history.goBack();
   };
   render() {
-    console.log("this props of recipe page", this.props);
     const { oneRecipe, token } = this.props;
     if (!oneRecipe.length) {
       return <p>Loading...</p>;
     } else {
-      const { title, ingredients, description, uploader_name } = oneRecipe[0];
-      // console.log(title, "title", ingredients);
+      // console.log("this props of recipe page", this.props);
+      // console.log("this props of recipe page one", this.props.oneRecipe);
+      const { title, ingredients, description, uploader_name, upload_date } =
+        oneRecipe[0];
+      let date = new Date(upload_date);
+      let uploadDate =
+        date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+
+      // console.log(Date(upload_date), "upload_date in dataaaaaaaaaaa");
       return (
         <>
           <div style={{ border: "2px solid blue" }}>
@@ -37,9 +55,11 @@ class RecipesPage extends React.Component {
                   );
                 })}
               </ul>
-              <h3>upload by: {uploader_name}</h3>
+
               <p>description:</p>
               <p>{description}</p>
+              <h3>upload by: {uploader_name}</h3>
+              <h3>upload date: {uploadDate}</h3>
             </div>
             <div>
               <button onClick={this.goBackHome}>Go Back</button>
@@ -61,7 +81,7 @@ const mapStateToProps = (state) => {
 };
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     addToFavorites: (e) => dispatch(addToFavorites(e)),
+//     fetchPoints: () => dispatch(fetchPoints()),
 //   };
 // };
 export default connect(mapStateToProps, null)(withRouter(RecipesPage));

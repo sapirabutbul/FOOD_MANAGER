@@ -8,6 +8,7 @@ export const FAVORITES_RECIPES = "FAVORITES_RECIPES";
 export const SHOPPING_LIST = "SHOPPING_LIST";
 export const RESET_LIST = "RESET_LIST";
 export const FETCH_LIKES_FAVS = "FETCH_LIKES_FAVS";
+export const FETCH_POINTS = "FETCH_POINTS";
 
 export const uploadUser = (value) => {
   return {
@@ -86,16 +87,19 @@ export const fetchFavoritesRecipes = (value) => (dispatch) => {
     });
 };
 export const makeShoppingList = (value) => {
+  console.log("valueeeeeeeeee", value);
   let recipes_id = [];
+  let recipes_title = [];
   for (let i = 0; i < value.target.length - 1; i++) {
     const element = value.target[i];
     if (element.checked) {
       recipes_id.push(element.id);
+      recipes_title.push(element.name);
     }
   }
   return {
     type: SHOPPING_LIST,
-    payload: recipes_id,
+    payload: [recipes_id, recipes_title],
   };
 };
 // export const resetShoppingList = (value) => {
@@ -110,9 +114,26 @@ export const fetchLikesFavsInfo = (value) => {
     payload: value,
   };
 };
-export const handleReset = (value) => {
-  return {
-    type: RESET_LIST,
-    payload: value,
-  };
+
+export const fetchPoints = (value) => (dispatch) => {
+  console.log("user id in fetch points", value);
+  fetch("http://localhost:4000/fetchpoints", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({ type: FETCH_POINTS, payload: data });
+      // if (data.length) {
+      //   console.log("data fetchPoints", data[0].points);
+      //   dispatch({ type: FETCH_POINTS, payload: data[0].points });
+      // } else {
+      //   dispatch({ type: FETCH_POINTS, payload: 0 });
+      // }
+    })
+    .catch((e) => {
+      console.log("error", e);
+    });
 };

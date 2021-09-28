@@ -8,6 +8,7 @@ import {
   SHOPPING_LIST,
   RESET_LIST,
   FETCH_LIKES_FAVS,
+  FETCH_POINTS,
 } from "./actions";
 import { combineReducers } from "redux";
 
@@ -21,6 +22,8 @@ const userInitState = {
   info: {
     howManyLikes: null,
     howManyFavorites: null,
+    allUsers_points: null,
+    userPoints: 0,
   },
 };
 
@@ -32,7 +35,17 @@ export const userReducer = (state = userInitState, action = {}) => {
       const { token } = action.payload;
       console.log("tokennnn action.payload.user", token);
       return { ...state, name: name, email: email, user_id: id, token: token };
-
+    case FETCH_POINTS:
+      console.log("action.payload fetch points", state.user_id, action.payload);
+      let points;
+      action.payload.forEach((element) => {
+        if (element.user_id === state.user_id) {
+          points = element.points;
+        } else {
+          points = 0;
+        }
+      });
+      return { ...state, allUsers_points: action.payload, userPoints: points };
     default:
       return { ...state };
   }
@@ -44,6 +57,7 @@ const recipesInitState = {
   filterRecipes: null,
   favoritesRecipes_id: [],
   shoppingList_id: null,
+  shoppingList_name: null,
 };
 export const recipesReducer = (state = recipesInitState, action = {}) => {
   switch (action.type) {
@@ -131,8 +145,12 @@ export const recipesReducer = (state = recipesInitState, action = {}) => {
     case FAVORITES_RECIPES:
       return { ...state, favoritesRecipes_id: action.payload };
     case SHOPPING_LIST:
-      console.log("action.payload", action.payload);
-      return { ...state, shoppingList_id: [...action.payload] };
+      // console.log("action.payload", action.payload);
+      return {
+        ...state,
+        shoppingList_id: [...action.payload[0]],
+        shoppingList_name: [...action.payload[1]],
+      };
     case RESET_LIST:
       return { ...state, shoppingList_id: null };
     default:

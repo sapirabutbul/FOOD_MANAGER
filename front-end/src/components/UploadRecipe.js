@@ -69,6 +69,7 @@ class UploadRecipe extends React.Component {
           description: this.state.description,
           uploader_id: this.state.uploader_id,
           uploader_name: this.state.uploader_name,
+          userPoints: this.props.userPoints,
         }),
       })
         .then((response) => response.json())
@@ -79,7 +80,7 @@ class UploadRecipe extends React.Component {
           console.log(e);
         });
       console.log("this.props upload recipe", this.props);
-      this.props.history.push(`/profile/myrecipes`);
+      this.props.history.push(`/`);
     }
   };
   render() {
@@ -182,6 +183,7 @@ const mapStateToProps = (state) => {
     name: state.userReducer.name,
     email: state.userReducer.email,
     id: state.userReducer.user_id,
+    userPoints: state.userReducer.userPoints,
   };
 };
 // const mapDispatchToProps = (dispatch) => {

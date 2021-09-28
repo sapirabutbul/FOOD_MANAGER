@@ -2,7 +2,7 @@ import React from "react";
 import withAuth from "../withAuth";
 import { Switch, Route, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchLikesFavsInfo } from "../redux/actions";
+import { fetchLikesFavsInfo, fetchPoints } from "../redux/actions";
 import FavoriteRecipes from "./FavoriteRecipes";
 import MyRecipes from "./MyRecipes";
 import ShoppingList from "./ShoppingList";
@@ -17,6 +17,7 @@ class Profile extends React.Component {
   }
   componentDidMount() {
     this.props.fetchLikesFavsInfo();
+    this.props.fetchPoints();
   }
   render() {
     console.log("profile props", this.props);
@@ -75,10 +76,10 @@ class Profile extends React.Component {
               path={`${this.props.match.path}/shoppinglist`}
               render={() => <ShoppingList />}
             />
-            {/* <Route
+            <Route
               path={`${this.props.match.path}/usershoplist`}
               render={() => <UserShopList />}
-            /> */}
+            />
           </Switch>
         </div>
       </div>
@@ -96,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLikesFavsInfo: (e) => dispatch(fetchLikesFavsInfo(e)),
+    fetchPoints: () => dispatch(fetchPoints()),
   };
 };
 export default connect(

@@ -14,7 +14,8 @@ import Footer from "./components/Footer";
 import withAuth from "./withAuth";
 import { uploadUser, fetchAllRecipes } from "./redux/actions";
 import RecipePage from "./components/RecipePage";
-
+import ErrorBoundary from "./components/ErrorBoundary";
+import Tips from "./components/Tips";
 class App extends React.Component {
   constructor() {
     super();
@@ -51,38 +52,46 @@ class App extends React.Component {
       <>
         <NavBar />
         <div>
-          <Switch>
-            <Route path="/" exact children={<Home />} />
-            <Route path="/about" children={<About />} />
-            <Route
-              path="/register"
-              render={(props) => (
-                <Register {...props} loadUser={this.loadUser} />
-              )}
-            />
-            <Route
-              path="/signin"
-              render={(props) => <SignIn {...props} loadUser={this.loadUser} />}
-            />
-            <Route
-              path="/signout"
-              render={(props) => (
-                <SignOut {...props} loadUser={this.loadUser} />
-              )}
-            />
-            <Route
-              path="/delete"
-              render={(props) => (
-                <DeleteUser {...props} loadUser={this.loadUser} user={user} />
-              )}
-            />
-            <Route path="/profile" component={withAuth(Profile, user, token)} />
-            <Route path="/recipepage" render={() => <RecipePage />} />
-            {/* <Route
+          <ErrorBoundary>
+            <Switch>
+              <Route path="/" exact children={<Home />} />
+              <Route path="/about" children={<About />} />
+              <Route path="/tips" children={<Tips />} />
+              <Route
+                path="/register"
+                render={(props) => (
+                  <Register {...props} loadUser={this.loadUser} />
+                )}
+              />
+              <Route
+                path="/signin"
+                render={(props) => (
+                  <SignIn {...props} loadUser={this.loadUser} />
+                )}
+              />
+              <Route
+                path="/signout"
+                render={(props) => (
+                  <SignOut {...props} loadUser={this.loadUser} />
+                )}
+              />
+              <Route
+                path="/delete"
+                render={(props) => (
+                  <DeleteUser {...props} loadUser={this.loadUser} user={user} />
+                )}
+              />
+              <Route
+                path="/profile"
+                component={withAuth(Profile, user, token)}
+              />
+              <Route path="/recipepage" render={() => <RecipePage />} />
+              {/* <Route
                 path="/uploadrecipe"
                 children={<UploadRecipe user={user} token={token} />}
               /> */}
-          </Switch>
+            </Switch>
+          </ErrorBoundary>
         </div>
         <Footer />
       </>

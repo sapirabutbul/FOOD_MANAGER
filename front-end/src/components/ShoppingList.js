@@ -6,6 +6,7 @@ import {
   handleReset,
 } from "../redux/actions";
 import UserShopList from "./UserShopList";
+import { withRouter } from "react-router-dom";
 
 class ShoppingList extends React.Component {
   // constructor() {
@@ -29,30 +30,10 @@ class ShoppingList extends React.Component {
   // };
   submitList = (e) => {
     e.preventDefault();
-    console.log("eeeeeeeeeeeeeee", e);
-    // let recipes_id = [];
-    // for (let i = 0; i < e.target.length - 1; i++) {
-    //   const element = e.target[i];
-    //   if (element.checked) {
-    //     recipes_id.push(element.id);
-    //   }
-    //   console.log("recipes_id      :", recipes_id);
     this.props.makeShoppingList(e);
-    // }
+    this.props.history.push(`usershoplist`);
   };
-  // submitList = (e) => {
-  //   e.preventDefault();
-  //   console.log("eeeeeeeeeeeeeee", e);
-  //   let recipes_id = [];
-  //   for (let i = 0; i < e.target.length - 1; i++) {
-  //     const element = e.target[i];
-  //     if (element.checked) {
-  //       recipes_id.push(element.id);
-  //     }
-  //     console.log("recipes_id      :", recipes_id);
-  //     this.props.makeShoppingList(recipes_id);
-  //   }
-  // };
+
   render() {
     console.log("shoppingList_id", this.props.shoppingList_id);
     const { favoritesRecipes_id, recipes, id, shoppingList_id } = this.props;
@@ -101,7 +82,7 @@ class ShoppingList extends React.Component {
           })}
           <button>Make me a Shopping List</button>
         </form>
-        <div>{shoppingList_id ? <UserShopList /> : null}</div>
+        {/* <div>{shoppingList_id ? <UserShopList /> : null}</div> */}
       </div>
     );
   }
@@ -121,7 +102,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchFavoritesRecipes: (e) => dispatch(fetchFavoritesRecipes(e)),
     makeShoppingList: (e) => dispatch(makeShoppingList(e)),
-    handleReset: (e) => dispatch(handleReset(e)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ShoppingList));

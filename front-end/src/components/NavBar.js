@@ -9,11 +9,14 @@ const NavBar = (props) => {
         <Link className="link" to="/" style={{ margin: "5px" }}>
           Home
         </Link>
+        <Link className="link" to="/profile" style={{ margin: "5px" }}>
+          Profile
+        </Link>
         <Link className="link" to="/about" style={{ margin: "5px" }}>
           About
         </Link>
-        <Link className="link" to="/profile" style={{ margin: "5px" }}>
-          Profile
+        <Link className="link" to="/tips" style={{ margin: "5px" }}>
+          Tips
         </Link>
         {!token ? (
           <Link className="link" to="/register" style={{ margin: "5px" }}>
