@@ -11,16 +11,27 @@ class MyRecipes extends React.Component {
   render() {
     const { recipes, id, goToRecipe } = this.props;
     return (
-      <div>
-        <h2>MyRecipes</h2>
+      <div className="recipesBox">
+        <h2 className="smallHeader">MyRecipes</h2>
         <div>
           {recipes.map((element) => {
             if (element.uploader_id === id) {
               console.log("element   :", element);
               return (
                 <>
-                  <div>
-                  <Link id={element.id} to="/recipepage" onClick={goToRecipe}>{element.title}</Link>
+                  <div className="grow">
+                    <Link
+                      className="recipesLinks"
+                      id={element.id}
+                      to="/recipepage"
+                      onClick={goToRecipe}
+                    >
+                      <img
+                        className="recipesIcon"
+                        src="https://www.creativefabrica.com/wp-content/uploads/2018/09/Crossed-spoon-and-fork-logo-by-yahyaanasatokillah.jpg"
+                      />
+                      {element.title}
+                    </Link>
                   </div>
                 </>
               );

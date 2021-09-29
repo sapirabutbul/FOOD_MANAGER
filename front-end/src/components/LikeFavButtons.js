@@ -42,8 +42,8 @@ class LikeFavButtons extends React.Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("dataa componentDidMount", data);
         if (data.length) {
+          console.log("dataa removeeee", data);
           this.setState({ favsButton: "Remove From Favorites" });
         }
       })
@@ -64,8 +64,8 @@ class LikeFavButtons extends React.Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("dataa componentDidMount", data);
         if (data.length) {
+          console.log("dataa removeeee likes", data);
           this.setState({ likeButton: "Unlike" });
         }
       })
@@ -74,6 +74,7 @@ class LikeFavButtons extends React.Component {
       });
   };
   handleLike = (e) => {
+    console.log("ccccccccccccccccccccccccccccheckkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     if (this.state.likeButton === "Unlike") {
       fetch("http://localhost:4000/removelike", {
         method: "POST",
@@ -174,9 +175,21 @@ class LikeFavButtons extends React.Component {
     const { likeButton, favsButton } = this.state;
     return (
       <>
-        <div style={{ border: "2px solid red" }}>
-          <button onClick={this.handleLike}>{likeButton}</button>
-          <button onClick={this.handleFavs}>{favsButton}</button>
+        <div>
+          <button
+            className="likeFavButton"
+            id="likeButton"
+            onClick={this.handleLike}
+          >
+            {likeButton}
+          </button>
+          <button
+            className="likeFavButton"
+            id="favoriteButton"
+            onClick={this.handleFavs}
+          >
+            {favsButton}
+          </button>
         </div>
       </>
     );

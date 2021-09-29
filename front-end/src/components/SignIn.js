@@ -30,7 +30,7 @@ class Signin extends React.Component {
       .then((userdata) => {
         console.log("userdata", userdata);
         this.props.loadUser(userdata);
-        this.props.history.goBack();
+        this.props.history.push("/");
       })
       .catch((e) => {
         console.log(e);

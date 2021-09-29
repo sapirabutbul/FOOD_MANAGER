@@ -38,8 +38,8 @@ class ShoppingList extends React.Component {
     console.log("shoppingList_id", this.props.shoppingList_id);
     const { favoritesRecipes_id, recipes, id, shoppingList_id } = this.props;
     return (
-      <div>
-        <h2>ShoppingList</h2>
+      <div className="recipesBox">
+        <h2 className="smallHeader">ShoppingList</h2>
         <form onSubmit={this.submitList}>
           {recipes.map((element, i) => {
             // console.log("element recipes  :", element);
@@ -48,14 +48,17 @@ class ShoppingList extends React.Component {
               if (item === element.id) {
                 return (
                   <>
-                    <div key={element.id}>
+                    <div className="shoppingListbox" key={element.id}>
                       <input
+                        className="checkBox"
                         type="checkbox"
                         id={element.id}
                         name={element.title}
                         value={element.title}
                       />
-                      <label for={element.title}>{element.title}</label>
+                      <label className="shoppingListItems" for={element.title}>
+                        {element.title}
+                      </label>
                     </div>
                   </>
                 );
@@ -67,20 +70,25 @@ class ShoppingList extends React.Component {
               // console.log("element   :", element);
               return (
                 <>
-                  <div key={element.id}>
+                  <div className="shoppingListbox" key={element.id}>
                     <input
+                      className="checkBox"
                       type="checkbox"
                       id={element.id}
                       name={element.title}
                       value={element.title}
                     />
-                    <label for={element.title}>{element.title}</label>
+                    <label className="shoppingListItems" for={element.title}>
+                      {element.title}
+                    </label>
                   </div>
                 </>
               );
             }
           })}
-          <button>Make me a Shopping List</button>
+          <button className="submitButton shopButton">
+            Make me a Shopping List
+          </button>
         </form>
         {/* <div>{shoppingList_id ? <UserShopList /> : null}</div> */}
       </div>

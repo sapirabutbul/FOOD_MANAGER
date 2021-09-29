@@ -38,7 +38,7 @@ class DeleteUser extends React.Component {
     return (
       <>
         <div className="container">
-          <h2>Delete User</h2>
+          <h2>Delete Account</h2>
           <h3>are you sure?</h3>
           <h3> you can cancel what you are going to do..</h3>
           <button className="submitButton" onClick={this.onSubmitDelete}>

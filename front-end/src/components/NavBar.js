@@ -4,7 +4,7 @@ const NavBar = (props) => {
   const { token } = props;
   return (
     <>
-      <nav className="bg-light-yellow db dt-l w-100 border-box pa2 ph5-l top-0 fixed">
+      <nav className="indexZ bg-light-yellow db dt-l w-100 border-box pa2 ph5-l top-0 fixed">
         <Link to="/">
           <img
             src="https://www.pinclipart.com/picdir/big/86-862588_mobi-food-logo-gif-clipart.png"
@@ -15,7 +15,10 @@ const NavBar = (props) => {
           <Link className="link dim dark-gray  f3-l dib mr3 mr4-l" to="/">
             Home
           </Link>
-          <Link className="link dim dark-gray f4-l dib mr3 mr4-l" to="/profile">
+          <Link
+            className="link dim dark-gray f4-l dib mr3 mr4-l"
+            to="/profile/myrecipes"
+          >
             Profile
           </Link>
           <Link className="link dim dark-gray f4-l dib mr3 mr4-l" to="/about">

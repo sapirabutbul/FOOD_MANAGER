@@ -41,8 +41,7 @@ export const userReducer = (state = userInitState, action = {}) => {
       action.payload.forEach((element) => {
         if (element.user_id === state.user_id) {
           points = element.points;
-        } else {
-          points = 0;
+          console.log("check if");
         }
       });
       return { ...state, allUsers_points: action.payload, userPoints: points };

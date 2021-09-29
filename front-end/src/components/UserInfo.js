@@ -7,14 +7,18 @@ class UserInfo extends React.Component {
     this.state = {};
   }
   render() {
-    console.log("points", this.props.points);
     const { name } = this.props;
     return (
-      <div>
-        <h2>My Kitchen</h2>
-        <h4>Hello {name},What are we going to cook today?</h4>
-        <h3>My Points: {this.props.userPoints}</h3>
-      </div>
+      <>
+        <h2 className="headers mt5">My Kitchen</h2>
+        <div className="userinfo tc br3 pa2 dib bw2 shadow-5 w6">
+          <h3>
+            Hello {name},<br />
+            What are we going to cook today?
+          </h3>
+          <h3>My Points: {this.props.userPoints}</h3>
+        </div>
+      </>
     );
   }
 }

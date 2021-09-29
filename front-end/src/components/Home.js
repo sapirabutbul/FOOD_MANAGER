@@ -15,7 +15,7 @@ class Home extends React.Component {
     return (
       <>
         <a name="top"></a>
-        <div style={{ border: "1px solid blue" }}>
+        <div>
           <header className="tc mt0">
             <h1>Welcome To Food Manager!</h1>
             <h2>Sharing is caring</h2>

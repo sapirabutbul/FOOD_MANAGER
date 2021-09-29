@@ -12,6 +12,7 @@ class UploadRecipe extends React.Component {
       uploader_id: this.props.id,
       uploader_name: this.props.name,
       inputs: [],
+      alertClass: "alertOff",
     };
   }
   //submit the ingredients
@@ -56,7 +57,10 @@ class UploadRecipe extends React.Component {
 
   onUploadRecipe = () => {
     if (!this.state.ingredients.length) {
-      return null;
+      this.setState({ alertClass: "alertOn" });
+      setTimeout(() => {
+        this.setState({ alertClass: "alertOff" });
+      }, 3000);
     } else {
       fetch("http://localhost:4000/uploadrecipe", {
         method: "POST",
@@ -88,90 +92,109 @@ class UploadRecipe extends React.Component {
     const { inputs } = this.state;
     return (
       <>
-        <div>
-          <h2>Upload a recipe</h2>
-          <div>
-            <label htmlFor="title">Title</label>
+        <div className="uploadBox">
+          <h2 className="smallHeader">Upload a recipe</h2>
+          <div className="uploadSmallBox">
+            <label className="labels" htmlFor="title">
+              Title:
+            </label>
             <input
+              className="inputs"
               type="text"
               name="title"
               id="title"
               onChange={this.onTitleChange}
             />
           </div>
-          <div>
-            <div>
-              <form onSubmit={this.addAllIngredient}>
-                <label htmlFor="ingredients">Ingredients</label>
-                <button onClick={this.handleInputs}>Add</button>
-                <div key={0}>
-                  <input
-                    type="text"
-                    name="ingredients"
-                    placeholder="amount"
-                    id="ingredientAmount"
-                  />
-                  <input
-                    type="text"
-                    name="ingredients"
-                    placeholder="unit"
-                    id="ingredientUnit"
-                  />
-                  <input
-                    type="text"
-                    name="ingredients"
-                    placeholder="item"
-                    id="ingredients"
-                  />
-                </div>
+          <div className="uploadSmallBox">
+            <form onSubmit={this.addAllIngredient}>
+              <label className="labels" htmlFor="ingredients">
+                Ingredients:
+              </label>
+              <button onClick={this.handleInputs} className="submitButton">
+                Add
+              </button>
+              <div key={0}>
+                <input
+                  className="inputs"
+                  type="text"
+                  name="ingredients"
+                  placeholder="amount"
+                  id="ingredientAmount"
+                />
+                <input
+                  className="inputs"
+                  type="text"
+                  name="ingredients"
+                  placeholder="unit"
+                  id="ingredientUnit"
+                />
+                <input
+                  className="inputs"
+                  type="text"
+                  name="ingredients"
+                  placeholder="item"
+                  id="ingredients"
+                />
+              </div>
 
-                {inputs.map((element, i) => {
-                  return (
-                    <div key={i + 1}>
-                      <input
-                        type="text"
-                        name="ingredients"
-                        placeholder="amount"
-                        id="ingredientAmount"
-                      />
-                      <input
-                        type="text"
-                        name="ingredients"
-                        placeholder="unit"
-                        id="ingredientUnit"
-                      />
-                      <input
-                        type="text"
-                        name="ingredients"
-                        placeholder="item"
-                        id="ingredients"
-                      />
-                    </div>
-                  );
-                })}
-                <button type="submit">Done</button>
-                <p>you have to press done before uploading recipe</p>
-              </form>
-            </div>
+              {inputs.map((element, i) => {
+                return (
+                  <div key={i + 1}>
+                    <input
+                      className="inputs"
+                      type="text"
+                      name="ingredients"
+                      placeholder="amount"
+                      id="ingredientAmount"
+                    />
+                    <input
+                      className="inputs"
+                      type="text"
+                      name="ingredients"
+                      placeholder="unit"
+                      id="ingredientUnit"
+                    />
+                    <input
+                      className="inputs"
+                      type="text"
+                      name="ingredients"
+                      placeholder="item"
+                      id="ingredients"
+                    />
+                  </div>
+                );
+              })}
+              <div className="ma1">
+                <button className="submitButton" type="submit">
+                  Done
+                </button>
+              </div>
+            </form>
           </div>
-          <div>
-            <label htmlFor="description">Description</label>
+          <div className="uploadSmallBox">
+            <label className="labels" htmlFor="description">
+              Description:
+            </label>
             <textarea
               type="text"
               name="description"
               id="description"
               onChange={this.onDescriptionChange}
-              className="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2"
+              className="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 ma2"
             />
           </div>
-          <div>
+          <div className="uploadSmallBox">
             <button
               type="submit"
-              className="submitButton"
+              className="submitButton uploadButton"
               onClick={this.onUploadRecipe}
             >
               Upload Recipe
             </button>
+            <p className={this.state.alertClass}>
+              you have to press done before uploading recipe!
+            </p>
           </div>
         </div>
       </>

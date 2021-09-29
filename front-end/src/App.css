@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@300&display=swap');
+
 *{
   font-family: 'Mukta Mahee', sans-serif;
 }
-nav{
+.indexZ{
   z-index: +1;
 }
 .appcontainer{
@@ -47,7 +48,7 @@ h3{
   height: 200px;
 }
 .cardColor{
-background-color: rgb(253, 221, 178);
+background-color: rgb(255, 205, 39);
 height: 300px;
 }
 .cardlink{
@@ -81,11 +82,25 @@ height: 300px;
   width: 90px;
   margin: 20px auto;
   padding: 5px 10px;
-  border:2px solid black;
+  border:2px solid white;
   border-radius: 5px;
-  background-color: rgb(20, 20, 114);
+  background-color: black;
   color: white;
   font-size: 18px;
+  text-decoration: none;
+}
+.uploadButton{
+  width: 160px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.shopButton{
+  width: 240px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-left: 50px;
 }
 
 label{
@@ -108,8 +123,18 @@ label{
     width:550px;
     height: 350px;
   }
+  .userinfo{
+    background-color: rgb(238, 167, 75) ;
+    margin: -75px 30px 30px;
+  }
+  .userInfoBox{
+    border: 1px solid white;
+    /* margin: 200px 5px 5px; */
+
+  }
   .tip{
   font-size: 35px;
+  color: whitesmoke;
   }
   .divButton{
     margin: auto 10px 5px auto;
@@ -137,3 +162,153 @@ label{
   background-color: rgb(253, 221, 178) ;
   box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 ); 
   }
+  .smallHeader{
+    margin:25px 0 15px 87px;
+font-size: 40px;
+  }
+  .recipesBox{
+    display: flex;
+    flex-direction: column;
+    width: 770px;
+    height: 450px;
+    border-radius: 15px;
+    margin: 25px 115px;
+    background-color: rgb(253, 221, 178) ;
+    box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 ); 
+  }
+  .recipesLinks{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 600;
+    margin:10px 30px;
+    color: black;
+  }
+  .recipesLinks:hover{
+    color: rgb(168, 13, 13);
+  }
+  .recipesIcon{
+    width: 35px;
+    height: 34px;
+    margin: 10px 9px -7px;
+    border-radius: 36px;
+  }
+  .uploadBox{
+    display: flex;
+    flex-direction: column;
+    width: 770px;
+    border-radius: 15px;
+    margin: auto auto 20px auto;
+    background-color: rgb(255, 205, 39);
+    box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 );
+  }
+  .uploadSmallBox{
+    margin:15px 40px;
+  }
+  .labels{
+    margin: 10px;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+  .inputs{
+    margin: 7px 7px 3px 5px;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  }
+  .alertOn{
+  color:red;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: 9px;
+  }
+  .alertOff{
+    color: rgb(255, 205, 39);
+    display: inline-block;
+  }
+  .shoppingListbox{
+    margin:10px 30px;
+  }
+  .shoppingListItems{
+    font-size: 28px;
+    font-weight: 500;
+  }
+  .checkBox{
+    width: 20px;
+    height: 20px;
+  }
+  
+ .userShopList{
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  border-radius: 15px;
+  margin: 20px 115px;
+  background-color: rgb(253, 221, 178);
+  box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 );
+ }
+ li{
+   font-size:25px ;
+   font-weight: 600;
+   margin:5px 7px
+
+ }
+ .shopHeader{
+  margin:25px 0 15px 70px;
+  font-size: 40px;
+ }
+ .recipePage{
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 2fr 100px;
+  width: 870px;
+  border-radius: 15px;
+  margin: 125px 170px 20px;
+  background-color: rgb(255, 205, 39);
+  box-shadow: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 );
+ }
+ .likebuttonDiv{
+grid-row: 1 / span 1;
+grid-column: 2/ span 1;
+width: 320px;
+display: inline-block;
+z-index: 0;
+ }
+ .recipeDiv{
+  grid-row: 1 / span 1;
+  grid-column: 1/ span 2;
+  padding: 35px;
+ }
+ .buttonDiv{
+  grid-row: 2 / span 1;
+  grid-column: 1/ span 1;
+  height: 40px;
+ }
+ .likeFavButton{
+  padding: 5px 10px;
+  border:2px solid white;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+ }
+ #favoriteButton{
+  width: 200px;
+  margin: 20px auto;
+  
+ }
+ #likeButton{
+  width: 100px;
+  margin: 20px auto;
+ }
+
+ .recipeHeader{
+   font-size: 38px;
+   padding-left: 45px;
+ }
+ .description{
+   font-size: 22px;
+   margin-bottom: 30px;
+ }

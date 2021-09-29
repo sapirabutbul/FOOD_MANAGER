@@ -31,10 +31,10 @@ create table likes (
 	liked_recipe_id integer,
 	 UNIQUE(user_id,liked_recipe_id )
 )
-drop table user_points
+
 select * from favorites
 select * from likes
-delete from favorites
+
 select * from user_points
 insert into user_points(user_id, points)
 values(14,0),
@@ -45,7 +45,7 @@ values(14,0),
 (19,0),
 (20,0),
 (21,0)
-delete from likes
+
 select * from users
 select * from login
 create table recipes (
@@ -58,6 +58,6 @@ create table recipes (
 	upload_date date not null default CURRENT_DATE
 )
 select * from recipes
-delete from likes
-drop table recipes
+delete from recipes where id=10
+
 select ingredients ->> 'amount' as amount from recipes 

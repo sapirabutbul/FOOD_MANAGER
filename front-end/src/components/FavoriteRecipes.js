@@ -14,9 +14,8 @@ class FavoriteRecipes extends React.Component {
   render() {
     const { favoritesRecipes_id, recipes } = this.props;
     return (
-      <div>
-        {console.log("favoritesRecipes_id", favoritesRecipes_id)}
-        <h2>FavoriteRecipes</h2>
+      <div className="recipesBox">
+        <h2 className="smallHeader">FavoriteRecipes</h2>
         <div>
           {recipes.map((element, i) => {
             console.log("element recipes  :", element);
@@ -25,12 +24,17 @@ class FavoriteRecipes extends React.Component {
               if (item === element.id) {
                 return (
                   <>
-                    <div>
+                    <div className="grow">
                       <Link
+                        className="recipesLinks"
                         id={element.id}
                         to="/recipepage"
                         onClick={goToRecipe}
                       >
+                        <img
+                          className="recipesIcon"
+                          src="https://www.creativefabrica.com/wp-content/uploads/2018/09/Crossed-spoon-and-fork-logo-by-yahyaanasatokillah.jpg"
+                        />
                         {element.title}
                       </Link>
                     </div>

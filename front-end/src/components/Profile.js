@@ -23,63 +23,65 @@ class Profile extends React.Component {
     console.log("profile props", this.props);
     const { user, token } = this.props;
     return (
-      <div className="">
-        <div className="bg-gold db dt-l w-100 border-box pa2 ph5-l fixed">
+      <div>
+        <div className="indexZ bg-gold db dt-l w-100 border-box pa3 ph5-l fixed">
           <Link
-            className="link"
+            className="link dim dark-gray  f4-l dib mr3 mr4-l"
             to={`${this.props.match.url}/myrecipes`}
             style={{ margin: "5px" }}
           >
             My Recipes
           </Link>
           <Link
-            className="link"
+            className="link dim dark-gray  f4-l dib mr3 mr4-l"
             to={`${this.props.match.url}/favoriterecipes`}
             style={{ margin: "5px" }}
           >
             Favorite Recipes
           </Link>
           <Link
-            className="link"
+            className="link dim dark-gray  f4-l dib mr3 mr4-l"
             to={`${this.props.match.url}/uploadrecipe`}
             style={{ margin: "5px" }}
           >
             Upload a Recipe
           </Link>
           <Link
-            className="link"
+            className="link dim dark-gray  f4-l dib mr3 mr4-l"
             to={`${this.props.match.url}/shoppinglist`}
             style={{ margin: "5px" }}
           >
             Shopping List Maker
           </Link>
         </div>
-        <div className="mt5">
-          <UserInfo />
-        </div>
-        <div style={{ border: "1px solid blue", height: "500px" }}>
-          <Switch>
-            <Route
-              path={`${this.props.match.path}/uploadrecipe`}
-              component={withAuth(UploadRecipe, user, token)}
-            />
-            <Route
-              path={`${this.props.match.path}/myrecipes`}
-              render={() => <MyRecipes />}
-            />
-            <Route
-              path={`${this.props.match.path}/favoriterecipes`}
-              render={() => <FavoriteRecipes />}
-            />
-            <Route
-              path={`${this.props.match.path}/shoppinglist`}
-              render={() => <ShoppingList />}
-            />
-            <Route
-              path={`${this.props.match.path}/usershoplist`}
-              render={() => <UserShopList />}
-            />
-          </Switch>
+        <div className="">
+          <div className="userInfoBox">
+            <UserInfo />
+          </div>
+          <div className="flex">
+            <Switch>
+              <Route
+                path={`${this.props.match.path}/uploadrecipe`}
+                component={withAuth(UploadRecipe, user, token)}
+              />
+              <Route
+                path={`${this.props.match.path}/myrecipes`}
+                render={() => <MyRecipes />}
+              />
+              <Route
+                path={`${this.props.match.path}/favoriterecipes`}
+                render={() => <FavoriteRecipes />}
+              />
+              <Route
+                path={`${this.props.match.path}/shoppinglist`}
+                render={() => <ShoppingList />}
+              />
+              <Route
+                path={`${this.props.match.path}/usershoplist`}
+                render={() => <UserShopList />}
+              />
+            </Switch>
+          </div>
         </div>
       </div>
     );

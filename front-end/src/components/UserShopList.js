@@ -101,8 +101,8 @@ class UserShopList extends React.Component {
     const { shoppingList_name } = this.props;
 
     return (
-      <div style={{ border: "1px solid green" }}>
-        <h2>Shopping List:</h2>
+      <div className="userShopList" style={{ border: "1px solid green" }}>
+        <h2 className="shopHeader">Shopping List:</h2>
         <ul>
           {ingredients.map((element) => {
             // console.log("element   :", element);
@@ -115,7 +115,7 @@ class UserShopList extends React.Component {
             );
           })}
         </ul>
-        <h3>made from those recipes:</h3>
+        <h2 className="shopHeader">made from those recipes:</h2>
         <ul>
           {shoppingList_name.map((element) => {
             console.log("element   :", element);
@@ -126,7 +126,7 @@ class UserShopList extends React.Component {
             );
           })}
         </ul>
-        <Link className="link" to={`shoppinglist`}>
+        <Link className="submitButton" to={`shoppinglist`}>
           Go Back
         </Link>
       </div>
