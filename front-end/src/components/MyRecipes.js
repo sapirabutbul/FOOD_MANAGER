@@ -16,7 +16,6 @@ class MyRecipes extends React.Component {
         <div>
           {recipes.map((element) => {
             if (element.uploader_id === id) {
-              console.log("element   :", element);
               return (
                 <>
                   <div className="grow">

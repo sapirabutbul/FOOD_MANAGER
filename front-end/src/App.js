@@ -48,7 +48,6 @@ class App extends React.Component {
   };
   render() {
     const { user, token } = this.state;
-    console.log("props checkinggggggggg :", this.props);
     return (
       <>
         <NavBar />
@@ -87,10 +86,6 @@ class App extends React.Component {
                 component={withAuth(Profile, user, token)}
               />
               <Route path="/recipepage" render={() => <RecipePage />} />
-              {/* <Route
-                path="/uploadrecipe"
-                children={<UploadRecipe user={user} token={token} />}
-              /> */}
             </Switch>
           </ErrorBoundary>
         </div>

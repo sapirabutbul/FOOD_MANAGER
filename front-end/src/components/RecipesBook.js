@@ -14,20 +14,15 @@ class RecipesBook extends React.Component {
 
   SubmitSearch = (e) => {
     e.preventDefault();
-    console.log("e.target[0].value", e, e.target[0].value);
     this.props.filteringRecipe(e.target[0].value);
     e.target.reset();
   };
 
   handleSort = (e) => {
-    const { recipes } = this.props;
-    console.log("sorting", e.target.value);
     this.props.sortingRecipes(e.target.value);
   };
 
   render() {
-    console.log("recipessssss", this.props.recipes);
-
     return (
       <div className="tc mt6">
         <h1 className="headers">Our Recipes</h1>

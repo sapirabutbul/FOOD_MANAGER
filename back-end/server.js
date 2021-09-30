@@ -48,13 +48,11 @@ app.post("/favoritesrecipes", (req, res) => {
 });
 // check like and favorites
 app.post("/checkfavbutton", (req, res) => {
-  console.log("reqqqqqqq", req.body);
   recipes.checkFavs(req, res).then((data) => {
     res.send(data);
   });
 });
 app.post("/checklikebutton", (req, res) => {
-  console.log("reqqqqqqq", req.body);
   recipes.checkLikes(req, res).then((data) => {
     res.send(data);
   });
@@ -76,9 +74,7 @@ app.post("/removelike", (req, res) => {
 
 // fetch user points
 app.post("/fetchpoints", (req, res) => {
-  console.log("checkkkkkkkkkkkkkkkkkkk");
   recipes.fetchPoints(req, res).then((data) => {
-    console.log("dddddddddeeeeee", data);
     res.send(data);
   });
 });

@@ -9,25 +9,10 @@ import UserShopList from "./UserShopList";
 import { withRouter } from "react-router-dom";
 
 class ShoppingList extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     userListOn: false,
-  //   };
-  // }
   componentDidMount() {
     this.props.fetchFavoritesRecipes(this.props.id);
   }
-  // checkReset = (e) => {
-  //   e.preventDefault();
-  //   if (!this.state.userListOn) {
-  //     this.setState({ userListOn: true });
-  //     this.props.handleReset();
-  //     this.submitList(e);
-  //   } else {
-  //     this.submitList(e);
-  //   }
-  // };
+
   submitList = (e) => {
     e.preventDefault();
     this.props.makeShoppingList(e);
@@ -35,16 +20,13 @@ class ShoppingList extends React.Component {
   };
 
   render() {
-    console.log("shoppingList_id", this.props.shoppingList_id);
-    const { favoritesRecipes_id, recipes, id, shoppingList_id } = this.props;
+    const { favoritesRecipes_id, recipes, id } = this.props;
     return (
       <div className="recipesBox">
         <h2 className="smallHeader">ShoppingList</h2>
         <form onSubmit={this.submitList}>
           {recipes.map((element, i) => {
-            // console.log("element recipes  :", element);
             return favoritesRecipes_id.map((item) => {
-              //   let favrecipes = item.favorite_recipe_id;
               if (item === element.id) {
                 return (
                   <>
@@ -67,7 +49,6 @@ class ShoppingList extends React.Component {
           })}
           {recipes.map((element) => {
             if (element.uploader_id === id) {
-              // console.log("element   :", element);
               return (
                 <>
                   <div className="shoppingListbox" key={element.id}>
@@ -90,7 +71,6 @@ class ShoppingList extends React.Component {
             Make me a Shopping List
           </button>
         </form>
-        {/* <div>{shoppingList_id ? <UserShopList /> : null}</div> */}
       </div>
     );
   }

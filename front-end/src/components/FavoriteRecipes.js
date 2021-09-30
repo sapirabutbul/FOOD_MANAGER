@@ -18,9 +18,7 @@ class FavoriteRecipes extends React.Component {
         <h2 className="smallHeader">FavoriteRecipes</h2>
         <div>
           {recipes.map((element, i) => {
-            console.log("element recipes  :", element);
             return favoritesRecipes_id.map((item) => {
-              //   let favrecipes = item.favorite_recipe_id;
               if (item === element.id) {
                 return (
                   <>
@@ -64,40 +62,3 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FavoriteRecipes);
-// {recipes.map((element, i) => {
-//     console.log("element   :", element);
-//     favoritesRecipes.map((item) => {
-//       //   let favrecipes = item.favorite_recipe_id;
-//       if (item.favorite_recipe_id === element.id) {
-//         return (
-//           <>
-//             <div>
-//               <Link
-//                 id={element.id}
-//                 to="/recipepage"
-//                 onClick={goToRecipe}
-//               >
-//                 {element.title}
-//               </Link>
-//             </div>
-//           </>
-//         );
-//       }
-//     });
-//     console.log("favoritesRecipes", favoritesRecipes);
-//   })}
-
-// {favoritesRecipes_id.map((item) => {
-//     //   let favrecipes = item.favorite_recipe_id;
-//     if (item.favorite_recipe_id === element.id) {
-//       return (
-//         <>
-//           <div>
-//             <Link id={element.id} to="/recipepage" onClick={goToRecipe}>
-//               {element.title}
-//             </Link>
-//           </div>
-//         </>
-//       );
-//     }
-//   })}

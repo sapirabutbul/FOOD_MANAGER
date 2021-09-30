@@ -18,11 +18,9 @@ export const uploadUser = (value) => {
 };
 
 export const fetchAllRecipes = () => (dispatch) => {
-  console.log("fetching");
   fetch("http://localhost:4000/showallrecipes")
     .then((res) => res.json())
     .then((data) => {
-      console.log("data", data);
       dispatch({ type: RECIPES, payload: data });
     })
     .catch((e) => {
@@ -54,7 +52,6 @@ export const goToRecipe = (value) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("data go to recipe action", data);
       dispatch({ type: FETCH_RECIPE, payload: data });
     })
     .catch((e) => {
@@ -63,7 +60,6 @@ export const goToRecipe = (value) => (dispatch) => {
 };
 
 export const fetchFavoritesRecipes = (value) => (dispatch) => {
-  console.log("value ", value);
   fetch("http://localhost:4000/favoritesrecipes", {
     method: "POST",
     headers: {
@@ -79,7 +75,6 @@ export const fetchFavoritesRecipes = (value) => (dispatch) => {
       data.map((element) => {
         return recipeArray.push(element.favorite_recipe_id);
       });
-      console.log("dataaaaaaaaaaaaaaaaaaa", recipeArray);
       dispatch({ type: FAVORITES_RECIPES, payload: recipeArray });
     })
     .catch((e) => {
@@ -87,7 +82,6 @@ export const fetchFavoritesRecipes = (value) => (dispatch) => {
     });
 };
 export const makeShoppingList = (value) => {
-  console.log("valueeeeeeeeee", value);
   let recipes_id = [];
   let recipes_title = [];
   for (let i = 0; i < value.target.length - 1; i++) {
@@ -102,12 +96,7 @@ export const makeShoppingList = (value) => {
     payload: [recipes_id, recipes_title],
   };
 };
-// export const resetShoppingList = (value) => {
-//   return {
-//     type: RESET_LIST,
-//     payload: value,
-//   };
-// };
+
 export const fetchLikesFavsInfo = (value) => {
   return {
     type: FETCH_LIKES_FAVS,
@@ -116,7 +105,6 @@ export const fetchLikesFavsInfo = (value) => {
 };
 
 export const fetchPoints = (value) => (dispatch) => {
-  console.log("user id in fetch points", value);
   fetch("http://localhost:4000/fetchpoints", {
     method: "POST",
     headers: {
@@ -126,12 +114,6 @@ export const fetchPoints = (value) => (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       dispatch({ type: FETCH_POINTS, payload: data });
-      // if (data.length) {
-      //   console.log("data fetchPoints", data[0].points);
-      //   dispatch({ type: FETCH_POINTS, payload: data[0].points });
-      // } else {
-      //   dispatch({ type: FETCH_POINTS, payload: 0 });
-      // }
     })
     .catch((e) => {
       console.log("error", e);

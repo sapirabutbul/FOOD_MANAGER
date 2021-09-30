@@ -13,11 +13,7 @@ class RecipesPage extends React.Component {
       favsButton: "Add To Favorites",
     };
   }
-  // componentDidMount() {
-  //   this.props.fetchPoints();
-  // }
   goBackHome = () => {
-    console.log("props", this.props);
     this.props.history.goBack();
   };
   render() {

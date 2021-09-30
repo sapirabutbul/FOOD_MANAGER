@@ -4,7 +4,6 @@ import { goToRecipe } from "../redux/actions";
 
 const RecipeCard = (props) => {
   const { eachRecipe } = props;
-  // console.log("eachRecipe", eachRecipe);
   const { id, title, uploader_name, upload_date } = eachRecipe;
   let date = new Date(upload_date);
   let uploadDate =

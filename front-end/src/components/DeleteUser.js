@@ -13,9 +13,7 @@ class DeleteUser extends React.Component {
         }),
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log("data", data);
-        })
+        .then((data) => {})
         .then((data) => {
           this.props.loadUser({
             user: {

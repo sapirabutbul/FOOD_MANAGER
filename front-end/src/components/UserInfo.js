@@ -30,9 +30,5 @@ const mapStateToProps = (state) => {
     userPoints: state.userReducer.userPoints,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     uploadUser: (e) => dispatch(uploadUser(e)),
-//   };
-// };
+
 export default connect(mapStateToProps, null)(UserInfo);

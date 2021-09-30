@@ -31,7 +31,6 @@ const uploadRecipe = (req, res) => {
         })
     )
     .then((data) => {
-      console.log(data);
       res.status(200).json("recipe uploaded");
     })
     .catch((e) => {
@@ -58,7 +57,6 @@ const checkLikes = (req, res) => {
 };
 // add recipe to favorite
 const addToFavorite = (req, res) => {
-  console.log("req bodyyyyyyyy", req.body);
   const { user_id, recipe_id, uploader_id, uploaderPoints } = req.body;
   db("favorites")
     .insert({
@@ -77,7 +75,6 @@ const addToFavorite = (req, res) => {
         })
     )
     .then((data) => {
-      console.log("dataa addToFavorite", data);
       res.status(200).json("recipe added to favorites");
     })
     .catch((e) => {
@@ -87,28 +84,15 @@ const addToFavorite = (req, res) => {
 
 // remove recipe from favorites
 const removeFromFavorite = (req, res) => {
-  console.log("req.body", req.body);
   const { user_id, recipe_id, uploader_id, uploaderPoints } = req.body;
-
   db("favorites")
     .where({
       user_id: user_id,
       favorite_recipe_id: recipe_id,
     })
     .del()
-    // .then(
-    //   db("user_points")
-    //     .update({
-    //       user_id: uploader_id,
-    //       points: uploaderPoints - 5,
-    //     })
-    //     .where({ user_id: uploader_id })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     })
-    // )
+
     .then((data) => {
-      console.log("dataa removeFromFavorite", data);
       res.status(200).json("recipe remove from favorites");
     })
     .catch((e) => {
@@ -117,9 +101,7 @@ const removeFromFavorite = (req, res) => {
 };
 // add like to recipe
 const addLike = (req, res) => {
-  console.log("req.bodyyyyyyy", req.body);
   const { user_id, recipe_id, uploader_id, uploaderPoints } = req.body;
-
   db("likes")
     .insert({
       user_id: user_id,
@@ -137,7 +119,6 @@ const addLike = (req, res) => {
         })
     )
     .then((data) => {
-      console.log("dataaa addLike", data);
       res.status(200).json("recipe like added");
     })
     .catch((e) => {
@@ -146,28 +127,14 @@ const addLike = (req, res) => {
 };
 // remove like from recipe
 const removeLike = (req, res) => {
-  console.log("req.body", req.body);
   const { user_id, recipe_id, uploader_id, uploaderPoints } = req.body;
-
   db("likes")
     .where({
       user_id: user_id,
       liked_recipe_id: recipe_id,
     })
     .del()
-    // .then(
-    //   db("user_points")
-    //     .update({
-    //       user_id: uploader_id,
-    //       points: uploaderPoints - 5,
-    //     })
-    //     .where({ user_id: uploader_id })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     })
-    // )
     .then((data) => {
-      console.log("dataa removeLike", data);
       res.status(200).json("remove like from recipe");
     })
     .catch((e) => {

@@ -7,7 +7,6 @@ import { fetchPoints } from "../redux/actions";
 class Home extends React.Component {
   componentDidMount() {
     if (this.props.token) {
-      console.log("if token feth pints");
       this.props.fetchPoints();
     }
   }

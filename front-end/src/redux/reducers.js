@@ -30,18 +30,14 @@ const userInitState = {
 export const userReducer = (state = userInitState, action = {}) => {
   switch (action.type) {
     case LOAD_USER:
-      // console.log("action.payload", action.payload);
       const { id, name, email } = action.payload.user;
       const { token } = action.payload;
-      console.log("tokennnn action.payload.user", token);
       return { ...state, name: name, email: email, user_id: id, token: token };
     case FETCH_POINTS:
-      console.log("action.payload fetch points", state.user_id, action.payload);
       let points;
       action.payload.forEach((element) => {
         if (element.user_id === state.user_id) {
           points = element.points;
-          console.log("check if");
         }
       });
       return { ...state, allUsers_points: action.payload, userPoints: points };
@@ -144,7 +140,6 @@ export const recipesReducer = (state = recipesInitState, action = {}) => {
     case FAVORITES_RECIPES:
       return { ...state, favoritesRecipes_id: action.payload };
     case SHOPPING_LIST:
-      // console.log("action.payload", action.payload);
       return {
         ...state,
         shoppingList_id: [...action.payload[0]],

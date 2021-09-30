@@ -20,7 +20,6 @@ class Profile extends React.Component {
     this.props.fetchPoints();
   }
   render() {
-    console.log("profile props", this.props);
     const { user, token } = this.props;
     return (
       <div>

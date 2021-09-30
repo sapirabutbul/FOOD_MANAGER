@@ -11,7 +11,6 @@ class UserShopList extends React.Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
     this.handleShoppingList();
   }
   handleShoppingList = () => {
@@ -30,7 +29,6 @@ class UserShopList extends React.Component {
           }
         });
       });
-      console.log("allIngredientsList beforeee", allIngredientsList);
       let finalIngredientsList = [];
       let doubleValues = [];
       let newAmount;
@@ -63,40 +61,28 @@ class UserShopList extends React.Component {
                 item: allIngredientsList[i].item,
               });
               allIngredientsList.splice(j, 1);
-              console.log("allIngredientsList in the else", allIngredientsList);
             }
           }
         }
       }
-      console.log("endddd doubleValues", doubleValues);
-      console.log("endddd finalIngredientsList", finalIngredientsList);
-      console.log("endddd allIngredientsList", allIngredientsList);
-      console.log("finalIngredientsList bfgdgfdgdhfdhd", finalIngredientsList);
 
       for (let k = 0; k < finalIngredientsList.length; k++) {
         const item = finalIngredientsList[k];
         allIngredientsList.map((element, index) => {
           if (element.item !== item.item) {
-            console.log("element aaaaaaaaaaaa not equal", index, element);
+            console.log("element not equal", index, element);
           } else {
             allIngredientsList.splice(index, 1);
-            console.log(
-              "allIngredientsList in the last if",
-              allIngredientsList
-            );
-            console.log("element bbbbbbbbbbbb equal", index, element);
+            console.log("element equal", index, element);
           }
         });
       }
       this.setState({
         ingredients: [...finalIngredientsList, ...allIngredientsList],
       });
-      console.log("allIngredientsList", allIngredientsList);
-      console.log("finalIngredientsList", finalIngredientsList);
     }
   };
   render() {
-    console.log("shoppingList_name", this.props.shoppingList_name);
     const { ingredients } = this.state;
     const { shoppingList_name } = this.props;
 
@@ -105,7 +91,6 @@ class UserShopList extends React.Component {
         <h2 className="shopHeader">Shopping List:</h2>
         <ul>
           {ingredients.map((element) => {
-            // console.log("element   :", element);
             return (
               <>
                 <li>
@@ -118,7 +103,6 @@ class UserShopList extends React.Component {
         <h2 className="shopHeader">made from those recipes:</h2>
         <ul>
           {shoppingList_name.map((element) => {
-            console.log("element   :", element);
             return (
               <>
                 <li>{element}</li>
@@ -145,9 +129,5 @@ const mapStateToProps = (state) => {
     shoppingList_name: state.recipesReducer.shoppingList_name,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     resetShoppingList: () => dispatch(resetShoppingList()),
-//   };
-// };
+
 export default connect(mapStateToProps, null)(UserShopList);

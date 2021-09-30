@@ -12,7 +12,6 @@ class LikeFavButtons extends React.Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount like fav button");
     this.checkingFavs();
     this.checkingLikes();
     const { oneRecipe, allUsers_points } = this.props;
@@ -24,12 +23,6 @@ class LikeFavButtons extends React.Component {
   }
 
   checkingFavs = () => {
-    console.log(
-      "this.props.oneRecipe[0].id",
-      this.props.oneRecipe[0].id,
-      "ggg",
-      this.props.id
-    );
     fetch("http://localhost:4000/checkfavbutton", {
       method: "POST",
       headers: {
@@ -43,7 +36,6 @@ class LikeFavButtons extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.length) {
-          console.log("dataa removeeee", data);
           this.setState({ favsButton: "Remove From Favorites" });
         }
       })
@@ -65,7 +57,6 @@ class LikeFavButtons extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.length) {
-          console.log("dataa removeeee likes", data);
           this.setState({ likeButton: "Unlike" });
         }
       })
@@ -74,7 +65,6 @@ class LikeFavButtons extends React.Component {
       });
   };
   handleLike = (e) => {
-    console.log("ccccccccccccccccccccccccccccheckkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     if (this.state.likeButton === "Unlike") {
       fetch("http://localhost:4000/removelike", {
         method: "POST",
@@ -90,7 +80,6 @@ class LikeFavButtons extends React.Component {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data remove like fetch:", data);
           this.setState({ likeButton: "Like" });
         })
         .catch((e) => {
@@ -111,7 +100,6 @@ class LikeFavButtons extends React.Component {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data add like fetch:", data);
           this.setState({ likeButton: "Unlike" });
         })
         .catch((e) => {
@@ -121,10 +109,7 @@ class LikeFavButtons extends React.Component {
   };
 
   handleFavs = (e) => {
-    console.log("user iddddddddddd", this.props.id);
-    // console.log("this.props.oneRecipe[0].id", this.props.oneRecipe[0].id);
     if (this.state.favsButton === "Remove From Favorites") {
-      // this.setState({ addToFavs: false });
       fetch("http://localhost:4000/removefromfavorite", {
         method: "POST",
         headers: {
@@ -139,7 +124,6 @@ class LikeFavButtons extends React.Component {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data remove from favorite fetch:", data);
           this.setState({ favsButton: "Add To Favorites" });
         })
         .catch((e) => {
@@ -160,7 +144,6 @@ class LikeFavButtons extends React.Component {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data add to favorite fetch:", data);
           this.setState({ favsButton: "Remove From Favorites" });
         })
         .catch((e) => {
@@ -169,9 +152,6 @@ class LikeFavButtons extends React.Component {
     }
   };
   render() {
-    // const { eachRecipe } = props;
-    console.log("ggggggggggggggggggggggg", this.state.uploaderPoints);
-    // const { id, title, uploader_name } = eachRecip
     const { likeButton, favsButton } = this.state;
     return (
       <>
@@ -204,9 +184,5 @@ const mapStateToProps = (state) => {
     allUsers_points: state.userReducer.allUsers_points,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addToFavorites: (e) => dispatch(addToFavorites(e)),
-//   };
-// };
+
 export default connect(mapStateToProps, null)(LikeFavButtons);

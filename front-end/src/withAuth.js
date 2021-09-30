@@ -11,7 +11,6 @@ const withAuth = (ComponentToProtect, user, token) => {
       };
     }
     componentDidMount() {
-      console.log("token", token);
       fetch("http://localhost:4000/checkToken", {
         method: "POST",
         headers: {

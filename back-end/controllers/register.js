@@ -28,19 +28,16 @@ const handleRegister = (req, res) => {
             const token = jwt.sign(payload, secret, {
               expiresIn: "3h",
             });
-            console.log("token", token);
             res.json({ user: user[0], token: token });
           });
       })
       .then(trx.commit)
       .then((data) => {
-        console.log("data!!!!!!!!!", data);
         db("users")
           .select("id")
           .where({ email: email })
           .returning("*")
           .then((id) => {
-            console.log("id!!!!!!!!!", id[0].id);
             db("user_points")
               .insert({
                 user_id: id[0].id,

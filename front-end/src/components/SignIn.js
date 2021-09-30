@@ -28,7 +28,6 @@ class Signin extends React.Component {
     })
       .then((res) => res.json())
       .then((userdata) => {
-        console.log("userdata", userdata);
         this.props.loadUser(userdata);
         this.props.history.push("/");
       })

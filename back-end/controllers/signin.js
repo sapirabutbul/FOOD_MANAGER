@@ -12,7 +12,6 @@ const handleSignIn = (req, res) => {
     .select("email", "hash")
     .where({ email })
     .then((data) => {
-      console.log("data  :", data);
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
         return db
@@ -20,12 +19,10 @@ const handleSignIn = (req, res) => {
           .from("users")
           .where({ email })
           .then((user) => {
-            //jsonwebtoken
             const payload = { email };
             const token = jwt.sign(payload, secret, {
               expiresIn: "3h",
             });
-            console.log("token", token);
             res.status(200).json({ user: user[0], token: token });
           })
           .catch((e) => {
