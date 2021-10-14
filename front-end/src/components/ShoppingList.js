@@ -1,11 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  fetchFavoritesRecipes,
-  makeShoppingList,
-  handleReset,
-} from "../redux/actions";
-import UserShopList from "./UserShopList";
+import { fetchFavoritesRecipes, makeShoppingList } from "../redux/actions";
 import { withRouter } from "react-router-dom";
 
 class ShoppingList extends React.Component {

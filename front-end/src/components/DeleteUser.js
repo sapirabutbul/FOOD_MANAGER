@@ -3,7 +3,7 @@ import React from "react";
 class DeleteUser extends React.Component {
   onSubmitDelete = () => {
     if (this.props.user.email) {
-      fetch("http://localhost:4000/delete", {
+      fetch("https://food-manager-react.herokuapp.com/delete", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

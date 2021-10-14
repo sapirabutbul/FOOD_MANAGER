@@ -11,7 +11,7 @@ const withAuth = (ComponentToProtect, user, token) => {
       };
     }
     componentDidMount() {
-      fetch("http://localhost:4000/checkToken", {
+      fetch(`https://food-manager-react.herokuapp.com/checkToken`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

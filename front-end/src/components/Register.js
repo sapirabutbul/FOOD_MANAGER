@@ -20,7 +20,7 @@ class Register extends React.Component {
     this.setState({ password: e.target.value });
   };
   onSubmitSignIn = () => {
-    fetch("http://localhost:4000/register", {
+    fetch("https://food-manager-react.herokuapp.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

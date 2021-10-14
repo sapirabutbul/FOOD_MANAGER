@@ -18,7 +18,7 @@ export const uploadUser = (value) => {
 };
 
 export const fetchAllRecipes = () => (dispatch) => {
-  fetch("http://localhost:4000/showallrecipes")
+  fetch(`https://food-manager-react.herokuapp.com/showallrecipes`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({ type: RECIPES, payload: data });
@@ -41,7 +41,7 @@ export const sortingRecipes = (value) => {
   };
 };
 export const goToRecipe = (value) => (dispatch) => {
-  fetch("http://localhost:4000/gotorecipe", {
+  fetch(`https://food-manager-react.herokuapp.com/gotorecipe`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const goToRecipe = (value) => (dispatch) => {
 };
 
 export const fetchFavoritesRecipes = (value) => (dispatch) => {
-  fetch("http://localhost:4000/favoritesrecipes", {
+  fetch(`https://food-manager-react.herokuapp.com/favoritesrecipes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export const fetchLikesFavsInfo = (value) => {
 };
 
 export const fetchPoints = (value) => (dispatch) => {
-  fetch("http://localhost:4000/fetchpoints", {
+  fetch(`https://food-manager-react.herokuapp.com/fetchpoints`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

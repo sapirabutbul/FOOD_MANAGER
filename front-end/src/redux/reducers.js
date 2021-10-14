@@ -7,7 +7,6 @@ import {
   FAVORITES_RECIPES,
   SHOPPING_LIST,
   RESET_LIST,
-  FETCH_LIKES_FAVS,
   FETCH_POINTS,
 } from "./actions";
 import { combineReducers } from "redux";

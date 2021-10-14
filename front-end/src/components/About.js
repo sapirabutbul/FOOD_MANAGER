@@ -9,7 +9,12 @@ const About = () => {
           eventually cook delicious meals from the great recipes you and your
           friends uploaded!
           <br />
-          Feel free to register and let the party begin!!!
+          <b>
+            For demonstration purposes you can login with this user:
+            <br /> Email: eli@gmail.com , Password:123456
+            <br /> Once you are logged in you can go to the profile, see your
+            recipes, make a shopping list and more!
+          </b>
         </p>
       </div>
       <div className="aboutBox">

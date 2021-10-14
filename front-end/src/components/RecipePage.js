@@ -18,8 +18,14 @@ class RecipesPage extends React.Component {
   };
   render() {
     const { oneRecipe, token } = this.props;
+
     if (!oneRecipe.length) {
-      return <h1>Loading...</h1>;
+      return (
+        <>
+          <h1>Loading...</h1>
+          <h2>sorry, the server is a bit slow..</h2>
+        </>
+      );
     } else {
       const { title, ingredients, description, uploader_name, upload_date } =
         oneRecipe[0];

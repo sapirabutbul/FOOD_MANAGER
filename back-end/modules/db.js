@@ -4,11 +4,13 @@ module.exports = {
   db: knex({
     client: "pg",
     connection: {
-      host: "127.0.0.1",
+      host: "ec2-34-228-100-83.compute-1.amazonaws.com",
       port: "5432",
-      user: "postgres",
-      password: "27041994",
-      database: "Food_Manager",
+      user: "jknedsctncvmqt",
+      password:
+        "61e4b3aa4d68b9c10a00855472c0908025b47eccdb78d1a18c032ac557f79579",
+      database: "db1qp6sofajpdh",
+      ssl: { rejectUnauthorized: false },
     },
   }),
 };

@@ -23,7 +23,7 @@ class LikeFavButtons extends React.Component {
   }
 
   checkingFavs = () => {
-    fetch("http://localhost:4000/checkfavbutton", {
+    fetch("https://food-manager-react.herokuapp.com/checkfavbutton", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ class LikeFavButtons extends React.Component {
       });
   };
   checkingLikes = () => {
-    fetch("http://localhost:4000/checklikebutton", {
+    fetch("https://food-manager-react.herokuapp.com/checklikebutton", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ class LikeFavButtons extends React.Component {
   };
   handleLike = (e) => {
     if (this.state.likeButton === "Unlike") {
-      fetch("http://localhost:4000/removelike", {
+      fetch("https://food-manager-react.herokuapp.com/removelike", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ class LikeFavButtons extends React.Component {
           console.log("error", e);
         });
     } else if (this.state.likeButton === "Like") {
-      fetch("http://localhost:4000/addlike", {
+      fetch("https://food-manager-react.herokuapp.com/addlike", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +110,7 @@ class LikeFavButtons extends React.Component {
 
   handleFavs = (e) => {
     if (this.state.favsButton === "Remove From Favorites") {
-      fetch("http://localhost:4000/removefromfavorite", {
+      fetch("https://food-manager-react.herokuapp.com/removefromfavorite", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +130,7 @@ class LikeFavButtons extends React.Component {
           console.log("error", e);
         });
     } else if (this.state.favsButton === "Add To Favorites") {
-      fetch("http://localhost:4000/addtofavorite", {
+      fetch("https://food-manager-react.herokuapp.com/addtofavorite", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

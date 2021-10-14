@@ -58,7 +58,7 @@ class UploadRecipe extends React.Component {
         this.setState({ alertClass: "alertOff" });
       }, 3000);
     } else {
-      fetch("http://localhost:4000/uploadrecipe", {
+      fetch("https://food-manager-react.herokuapp.com/uploadrecipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
